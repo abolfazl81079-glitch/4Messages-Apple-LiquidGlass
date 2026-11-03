@@ -22,17 +22,16 @@ jobs:
         java-version: '8'
         distribution: 'temurin'
 
+    - name: Install Android SDK Platform 30 & Build-Tools
+      run: |
+        yes | ${ANDROID_HOME}/cmdline-tools/latest/bin/sdkmanager --licenses || true
+        ${ANDROID_HOME}/cmdline-tools/latest/bin/sdkmanager "platforms;android-30" "build-tools;29.0.3"
+
     - name: Grant Execute Permission for Gradlew
       run: chmod +x gradlew
 
-    - name: Disable corrupt NDK check for AGP 3.5
-      run: |
-        echo "ANDROID_NDK_HOME=" >> $GITHUB_ENV
-        echo "ANDROID_NDK_ROOT=" >> $GITHUB_ENV
-        echo "ndk.dir=" > local.properties
-
     - name: Build Debug APK
-      run: ./gradlew assembleNoAnalyticsDebug -Pandroid.builder.sdkDownload=false --stacktrace --no-daemon
+      run: ./gradlew assembleNoAnalyticsDebug --stacktrace --no-daemon
 
     - name: Upload APK Artifact
       uses: actions/upload-artifact@v4
