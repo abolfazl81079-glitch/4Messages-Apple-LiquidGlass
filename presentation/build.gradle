@@ -47,6 +47,10 @@ android {
         abortOnError false
     }
 
+    packagingOptions {
+        doNotStrip '**/*.so'
+    }
+
     productFlavors {
         withAnalytics { dimension "analytics" }
         noAnalytics { dimension "analytics" }
