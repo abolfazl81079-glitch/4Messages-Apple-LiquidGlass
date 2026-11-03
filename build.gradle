@@ -1,4 +1,4 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
+﻿// Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
     ext.androidx_appcompat_version = '1.1.0'
@@ -36,9 +36,12 @@ buildscript {
     ext.abiCodes = ['armeabi-v7a': 1, 'arm64-v8a': 2]
 
     repositories {
-        maven { url 'https://maven.google.com' }
-        jcenter()
         google()
+        maven { url 'https://maven.aliyun.com/repository/public' }
+        maven { url 'https://maven.aliyun.com/repository/jcenter' }
+        maven { url 'https://maven.google.com' }
+        mavenCentral()
+        jcenter()
     }
 
     dependencies {
@@ -53,7 +56,8 @@ buildscript {
 allprojects {
     repositories {
         google()
-        jcenter()
+        maven { url 'https://maven.aliyun.com/repository/public' }
+        maven { url 'https://maven.aliyun.com/repository/jcenter' }
         maven { url "https://jitpack.io" }
         maven { url 'https://maven.google.com' }
         maven {
@@ -61,6 +65,7 @@ allprojects {
             url 'https://oss.sonatype.org/content/repositories/snapshots'
         }
         mavenCentral()
+        jcenter()
     }
 }
 
@@ -81,3 +86,4 @@ subprojects {
         }
     }
 }
+
