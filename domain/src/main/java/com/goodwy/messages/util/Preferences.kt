@@ -88,10 +88,10 @@ class Preferences @Inject constructor(
     val nightEnd = rxPrefs.getString("nightEnd", "6:00")
     val black = rxPrefs.getBoolean("black", false)
     val gray = rxPrefs.getBoolean("gray", false)
-    val autoColor = rxPrefs.getBoolean("autoColor", true)
+    val autoColor = rxPrefs.getBoolean("autoColor", false)
     val grayAvatar = rxPrefs.getBoolean("grayAvatar", true)
-    val bubbleColorInvert = rxPrefs.getBoolean("bubbleColorInvert", false)
-    val bubbleStyle = rxPrefs.getInteger("bubbleStyle", BUBBLE_STYLE_ORIGINAL)
+    val bubbleColorInvert = rxPrefs.getBoolean("bubbleColorInvert", true)
+    val bubbleStyle = rxPrefs.getInteger("bubbleStyle", BUBBLE_STYLE_IOS)
     val simColor = rxPrefs.getBoolean("simColor", false)
     val sim1Color = rxPrefs.getInteger("sim1Color", SIM_COLOR_BLUE)
     val sim2Color = rxPrefs.getInteger("sim2Color", SIM_COLOR_GREEN)
@@ -152,10 +152,10 @@ class Preferences @Inject constructor(
 
     fun theme(
         recipientId: Long = 0,
-        default: Int = rxPrefs.getInteger("theme", 0xFF4C86CB.toInt()).get() //0f9d58 green
+        default: Int = rxPrefs.getInteger("theme", 0xFF007AFF.toInt()).get() // Apple iOS Blue
     ): Preference<Int> {
         return when (recipientId) {
-            0L -> rxPrefs.getInteger("theme", 0xFF4C86CB.toInt()) //0f9d58 green
+            0L -> rxPrefs.getInteger("theme", 0xFF007AFF.toInt()) // Apple iOS Blue
             else -> rxPrefs.getInteger("theme_$recipientId", default)
         }
     }

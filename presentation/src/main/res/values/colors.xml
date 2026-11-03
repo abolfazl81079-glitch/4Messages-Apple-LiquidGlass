@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="white">#FFFFFFFF</color>
     <color name="black">#FF000000</color>
@@ -9,33 +9,33 @@
     <color name="rippleLight">#1F000000</color>
     <color name="rippleDark">#33FFFFFF</color>
 
-    <color name="toolbarLight">#FFFFFF</color>
-    <color name="toolbarDark">#1D262B</color>
-    <color name="toolbarTranslucent">#88000000</color>
+    <color name="toolbarLight">#F2F4F7</color>
+    <color name="toolbarDark">#161B22</color>
+    <color name="toolbarTranslucent">#B3000000</color>
 
-    <color name="backgroundLight">#FFFFFF</color>
-    <color name="backgroundGray">#F2F2F6</color> <!--EBEBEB-->
-    <color name="backgroundDark">#1E2225</color> <!--192025-->
+    <color name="backgroundLight">#F2F4F7</color>
+    <color name="backgroundGray">#EBEFF5</color> <!--EBEBEB-->
+    <color name="backgroundDark">#12151B</color> <!--192025-->
 
-    <color name="textPrimary">#49555F</color> <!--49555F-->
-    <color name="textPrimaryDisabled">#4C49555F</color>
-    <color name="textSecondary">#70808D</color>
-    <color name="textSecondaryDisabled">#4C70808D</color>
-    <color name="textTertiary">#B7B9C0</color> <!--Цвет текста в окне поиска, окне ввода сообщения, дата и шеврон-->
+    <color name="textPrimary">#1C1C1E</color> <!--49555F-->
+    <color name="textPrimaryDisabled">#4C1C1C1E</color>
+    <color name="textSecondary">#636366</color>
+    <color name="textSecondaryDisabled">#4C636366</color>
+    <color name="textTertiary">#8E8E93</color> <!--Цвет текста в окне поиска, окне ввода сообщения, дата и шеврон-->
 
     <color name="textPrimaryDark">#FFFFFFFF</color> <!--FFFFFFFF-->
     <color name="textPrimaryDisabledDark">#7FFFFFFF</color> <!--7FFFFFFF-->
-    <color name="textSecondaryDark">#8E8E93</color> <!--ccffffff-->
+    <color name="textSecondaryDark">#A1A1A6</color> <!--ccffffff-->
     <color name="textSecondaryDisabledDark">#67FFFFFF</color> <!--67ffffff-->
-    <color name="textTertiaryDark">#F1F2F7</color> <!--80ffffff-->
+    <color name="textTertiaryDark">#8E8E93</color> <!--80ffffff-->
     <!--Окно поиска и ввода сообщения-->
-    <color name="bubbleLight">#EEEEEF</color> <!--ECEFF1-->
-    <color name="bubbleGray">#FAFAFA</color> <!--B9B9B9, f6f7f7-->
-    <color name="bubbleDark">#35353A</color> <!--11171B-->
+    <color name="bubbleLight">#E5E5EA</color> <!--ECEFF1-->
+    <color name="bubbleGray">#E5E5EA</color> <!--B9B9B9, f6f7f7-->
+    <color name="bubbleDark">#2C2C2E</color> <!--11171B-->
     <color name="bubbleBlack">#1C1C1E</color> <!--0F1113-->
 
-    <color name="separatorLight">#0C000000</color>
-    <color name="separatorDark">#1AFFFFFF</color>
+    <color name="separatorLight">#1A000000</color>
+    <color name="separatorDark">#26FFFFFF</color>
 
     <color name="switchThumbEnabledLight">#ECECEC</color>
     <color name="switchThumbEnabledGray">#FFFFFF</color>
@@ -51,7 +51,7 @@
     <color name="switchTrackDisabledDark">#383838</color>
 
     <!-- This colour should only ever be used for attrs with the tools tag -->
-    <color name="tools_theme">#4C86CB</color> <!--5D99FF-->
+    <color name="tools_theme">#007AFF</color> <!-- Apple iOS Blue -->
 
     <color name="sim1">#5D99FF</color>
     <color name="sim2">#06C9AF</color>
