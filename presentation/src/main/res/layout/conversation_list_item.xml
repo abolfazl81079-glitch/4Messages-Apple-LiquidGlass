@@ -4,46 +4,62 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="?attr/selectableItemBackground"
+    android:layout_marginStart="12dp"
+    android:layout_marginTop="4dp"
+    android:layout_marginEnd="12dp"
+    android:layout_marginBottom="4dp"
+    android:background="@drawable/glass_card_conversation"
     android:gravity="center_vertical"
     android:orientation="horizontal"
-    android:paddingStart="8dp"
-    android:paddingTop="0dp"
-    android:paddingEnd="16dp"
-    android:paddingBottom="8dp">
+    android:paddingStart="12dp"
+    android:paddingTop="12dp"
+    android:paddingEnd="14dp"
+    android:paddingBottom="12dp">
 
     <View
         android:id="@+id/separator"
         android:layout_width="0dp"
-        android:layout_height="1dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="@id/title"
-        app:layout_constraintEnd_toEndOf="@id/chevron"
-        android:background="?android:attr/divider"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/unread"
+        android:layout_width="8dp"
+        android:layout_height="8dp"
+        android:layout_gravity="center"
+        android:layout_marginEnd="6dp"
+        android:src="@drawable/circle"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@id/avatars"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/avatars"
+        tools:tint="@color/apple_accent_blue"
+        tools:visibility="visible"
+        android:contentDescription="unread" />
 
     <com.goodwy.messages.common.widget.GroupAvatarView
         android:id="@+id/avatars"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginStart="5dp"
-        android:layout_gravity="top"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@id/unread"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.goodwy.messages.common.widget.QkTextView
         android:id="@+id/title"
         style="@style/TextPrimary"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:layout_marginStart="12dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="8dp"
         android:ellipsize="end"
         android:lines="1"
+        android:textColor="@color/textPrimary"
+        android:textStyle="bold"
         app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toTopOf="@id/snippet"
         app:layout_constraintEnd_toStartOf="@id/date"
@@ -51,7 +67,7 @@
         app:layout_constraintStart_toEndOf="@id/avatars"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed"
-        tools:text="@tools:sample/full_names" />
+        tools:text="Alex Morgan" />
 
     <com.goodwy.messages.common.widget.QkTextView
         android:id="@+id/snippet"
@@ -59,42 +75,28 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
+        android:layout_marginEnd="8dp"
         android:ellipsize="end"
         android:maxLines="2"
+        android:textColor="@color/textSecondary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/pinned"
         app:layout_constraintStart_toStartOf="@id/title"
         app:layout_constraintTop_toBottomOf="@id/title"
-        tools:text="@tools:sample/lorem/random" />
+        tools:text="Hey, let's catch up tonight!" />
 
     <ImageView
         android:id="@+id/pinned"
-        android:layout_width="20dp"
+        android:layout_width="16dp"
         android:layout_height="16dp"
         android:layout_marginTop="2dp"
-        android:paddingStart="4dp"
         android:src="@drawable/ic_baseline_push_pin_24"
-        android:tint="?android:attr/textColorSecondary"
+        android:tint="@color/textTertiary"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/snippet"
         tools:visibility="visible"
         android:contentDescription="pinned" />
-
-    <ImageView
-        android:id="@+id/unread"
-        android:layout_width="10dp"
-        android:layout_height="10dp"
-        android:layout_gravity="center"
-        android:layout_marginStart="2dp"
-        android:src="@drawable/circle"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@id/avatars"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/avatars"
-        tools:tint="@color/tools_theme"
-        tools:visibility="visible"
-        android:contentDescription="unread" />
 
     <com.goodwy.messages.common.widget.QkTextView
         android:id="@+id/date"
@@ -102,69 +104,42 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        android:paddingEnd="5dp"
+        android:textColor="@color/textTertiary"
         app:layout_constraintBottom_toBottomOf="@id/title"
         app:layout_constraintEnd_toStartOf="@id/sim"
-        app:layout_constraintHorizontal_bias="100"
-        tools:text="Oct 11" />
+        app:layout_constraintTop_toTopOf="@id/title"
+        tools:text="12:45" />
 
     <ImageView
         android:id="@+id/sim"
-        android:layout_width="16dp"
-        android:layout_height="16dp"
+        android:layout_width="14dp"
+        android:layout_height="14dp"
+        android:layout_marginStart="4dp"
         android:layout_marginEnd="2dp"
         android:src="@drawable/ic_sim_card_black_24dp"
-        android:tint="?android:attr/textColorSecondary"
+        android:tint="@color/textTertiary"
+        android:visibility="gone"
         app:layout_constraintTop_toTopOf="@id/date"
         app:layout_constraintBottom_toBottomOf="@id/date"
         app:layout_constraintEnd_toStartOf="@id/chevron"
-        app:layout_constraintHorizontal_bias="100"
         android:contentDescription="sim" />
 
     <com.goodwy.messages.common.widget.QkTextView
         android:id="@+id/simIndex"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="2px"
-        android:textColor="?android:attr/windowBackground"
-        app:layout_constraintTop_toTopOf="@id/sim"
-        app:layout_constraintBottom_toBottomOf="@id/sim"
-        app:layout_constraintStart_toStartOf="@id/sim"
-        app:layout_constraintEnd_toEndOf="@id/sim"
-        app:textSize="tertiary"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
         tools:text="1" />
 
     <ImageView
         android:id="@+id/chevron"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_marginStart="4dp"
         android:src="@drawable/ic_chevron_right_black_24dp"
-        android:tint="?android:attr/textColorTertiary"
+        android:tint="@color/textTertiary"
         app:layout_constraintTop_toTopOf="@id/date"
         app:layout_constraintBottom_toBottomOf="@id/date"
         app:layout_constraintEnd_toEndOf="parent" />
-<!--
-    <ImageView
-        android:id="@+id/sim"
-        android:layout_width="12dp"
-        android:layout_height="12dp"
-        android:layout_marginEnd="2dp"
-        android:gravity="center_vertical"
-        android:src="@drawable/ic_sim_card_black_24dp"
-        android:tint="?android:attr/textColorSecondary"
-        app:layout_constraintTop_toTopOf="@id/simIndex"
-        app:layout_constraintBottom_toBottomOf="@id/simIndex"
-        app:layout_constraintEnd_toStartOf="@id/simIndex" />
 
-    <com.goodwy.messages.common.widget.QkTextView
-        android:id="@+id/simIndex"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:textColor="?android:attr/textColorSecondary"
-        app:layout_constraintBottom_toBottomOf="@id/title"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:textSize="tertiary"
-        tools:text="1" />
--->
 </androidx.constraintlayout.widget.ConstraintLayout>

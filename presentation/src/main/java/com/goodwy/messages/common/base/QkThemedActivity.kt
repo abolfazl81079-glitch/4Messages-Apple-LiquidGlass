@@ -101,11 +101,7 @@ abstract class QkThemedActivity : QkActivity() {
 
     @SuppressLint("InlinedApi")
     override fun onCreate(savedInstanceState: Bundle?) {
-        if (!isNightModeActive()) {
-            setTheme(getActivityGrayThemeRes(prefs.gray.get()))
-        } else {
-            setTheme(getActivityThemeRes(prefs.black.get()))
-        }
+        setTheme(getActivityThemeRes(true))
         super.onCreate(savedInstanceState)
 
         // When certain preferences change, we need to recreate the activity
@@ -136,23 +132,7 @@ abstract class QkThemedActivity : QkActivity() {
         setTaskDescription(taskDesc)
     }
 
-    open fun isNightModeActive(): Boolean {
-        val defaultNightMode = AppCompatDelegate.getDefaultNightMode()
-        if (defaultNightMode == AppCompatDelegate.MODE_NIGHT_YES) {
-            return true
-        }
-        if (defaultNightMode == AppCompatDelegate.MODE_NIGHT_NO) {
-            return false
-        }
-        val currentNightMode: Int = (getResources().getConfiguration().uiMode
-                and Configuration.UI_MODE_NIGHT_MASK)
-        when (currentNightMode) {
-            Configuration.UI_MODE_NIGHT_NO -> return false
-            Configuration.UI_MODE_NIGHT_YES -> return true
-            Configuration.UI_MODE_NIGHT_UNDEFINED -> return false
-        }
-        return false
-    }
+    open fun isNightModeActive(): Boolean = true
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)

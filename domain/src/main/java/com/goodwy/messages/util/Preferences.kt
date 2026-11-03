@@ -80,13 +80,10 @@ class Preferences @Inject constructor(
 
     // User configurable
     val sendAsGroup = rxPrefs.getBoolean("sendAsGroup", true)
-    val nightMode = rxPrefs.getInteger("nightMode", when (Build.VERSION.SDK_INT >= 29) {
-        true -> NIGHT_MODE_SYSTEM
-        false -> NIGHT_MODE_OFF
-    })
+    val nightMode = rxPrefs.getInteger("nightMode", NIGHT_MODE_ON)
     val nightStart = rxPrefs.getString("nightStart", "18:00")
     val nightEnd = rxPrefs.getString("nightEnd", "6:00")
-    val black = rxPrefs.getBoolean("black", false)
+    val black = rxPrefs.getBoolean("black", true)
     val gray = rxPrefs.getBoolean("gray", false)
     val autoColor = rxPrefs.getBoolean("autoColor", false)
     val grayAvatar = rxPrefs.getBoolean("grayAvatar", true)
@@ -96,7 +93,7 @@ class Preferences @Inject constructor(
     val sim1Color = rxPrefs.getInteger("sim1Color", SIM_COLOR_BLUE)
     val sim2Color = rxPrefs.getInteger("sim2Color", SIM_COLOR_GREEN)
     val sim3Color = rxPrefs.getInteger("sim3Color", SIM_COLOR_YELLOW)
-    val separator = rxPrefs.getBoolean("separator", true)
+    val separator = rxPrefs.getBoolean("separator", false)
     val systemFont = rxPrefs.getBoolean("systemFont", false)
     val textSize = rxPrefs.getInteger("textSize", TEXT_SIZE_NORMAL)
     val blockingManager = rxPrefs.getInteger("blockingManager", BLOCKING_MANAGER_QKSMS)

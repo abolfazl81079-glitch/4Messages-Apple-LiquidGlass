@@ -50,13 +50,15 @@ jobs:
       uses: softprops/action-gh-release@v2
       if: startsWith(github.ref, 'refs/tags/') || github.event_name == 'workflow_dispatch' || github.ref == 'refs/heads/main'
       with:
-        tag_name: v1.1.0-glass
-        name: "4Messages - Apple Liquid Glass Edition"
+        tag_name: v2.0.0-liquid-glass
+        name: "4Messages - Apple Dark Liquid Glass v2.0"
         body: |
-          ### 4Messages - Apple Liquid Glass Edition 🍏💎
-          - **Liquid Glass Theme:** Modern frosted glass surfaces, subtle highlights & Apple squircle rounded design.
-          - **Apple Style Notifications & Quick Reply:** Translucent sleek notification reply modal.
-          - **Minimalist Glass Icon:** Brand new vector adaptive icon styled after modern iOS glass aesthetic.
+          ### 4Messages - Apple Dark Liquid Glass v2.0 🍏💎
+          - **True Obsidian Dark Glassmorphism:** Deep space dark background (#08090C) matching HorizonX aesthetic.
+          - **Frosted Glass Cards:** Every conversation is housed in an elegant translucent card with subtle light border and 16dp rounded corners.
+          - **Liquid Glass Searchbar & Inputs:** Frosted glass pill searchbar and compose inputs.
+          - **All-New Minimalist Apple Liquid Glass Icon:** Generated high-resolution icons across all densities (mdpi to xxxhdpi) and adaptive icons.
+          - **Forced Dark Glass Defaults:** The app immediately launches in the dark liquid glass theme without needing manual configuration.
           - Download the APK below and install on your Android device.
         files: presentation/build/outputs/apk/noAnalytics/debug/*.apk
       env:

@@ -12,6 +12,7 @@
         <item name="android:textColorSecondary">@color/text_secondary</item>
         <item name="android:textColorTertiary">@color/text_tertiary</item>
         <item name="android:windowBackground">@color/backgroundDark</item>
+        <item name="android:windowLightStatusBar">false</item>
         <item name="android:windowContentTransitions">true</item>
         <item name="actionBarPopupTheme">@style/PopupTheme</item>
         <item name="bubbleColor">@color/bubbleDark</item>
@@ -46,29 +47,29 @@
 
     <!-- Black theme -->
     <style name="AppTheme.Black">
-        <item name="android:navigationBarColor">@color/black</item>
-        <item name="android:statusBarColor">@color/black</item>
-        <item name="android:windowBackground">@color/black</item>
+        <item name="android:navigationBarColor">@color/backgroundDark</item>
+        <item name="android:statusBarColor">@color/backgroundDark</item>
+        <item name="android:windowBackground">@color/backgroundDark</item>
         <item name="bubbleColor">@color/bubbleBlack</item>
-        <item name="colorPrimary">@color/black</item>
-        <item name="colorPrimaryDark">@color/black</item>
+        <item name="colorPrimary">@color/backgroundDark</item>
+        <item name="colorPrimaryDark">@color/backgroundDark</item>
     </style>
 
     <style name="AppThemeDialog.Black">
-        <item name="android:windowBackground">@color/black</item>
+        <item name="android:windowBackground">@color/backgroundDark</item>
         <item name="actionBarPopupTheme">@style/PopupTheme.Black</item>
-        <item name="colorPrimary">@color/black</item>
-        <item name="colorPrimaryDark">@color/black</item>
+        <item name="colorPrimary">@color/backgroundDark</item>
+        <item name="colorPrimaryDark">@color/backgroundDark</item>
     </style>
 
     <style name="PopupTheme.Black">
-        <item name="android:colorBackground">@color/black</item>
+        <item name="android:colorBackground">@color/backgroundDark</item>
         <item name="bubbleColor">@color/bubbleBlack</item>
     </style>
 
-    <!-- Gray mode. No changes needed when not in light theme -->
-    <style name="AppTheme.Gray" />
-    <style name="AppThemeDialog.Gray" />
-    <style name="PopupTheme.Gray" />
+    <!-- Gray mode -->
+    <style name="AppTheme.Gray" parent="AppTheme.Black" />
+    <style name="AppThemeDialog.Gray" parent="AppThemeDialog.Black" />
+    <style name="PopupTheme.Gray" parent="PopupTheme.Black" />
 
 </resources>

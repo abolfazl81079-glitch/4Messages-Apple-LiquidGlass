@@ -2,71 +2,78 @@
 <resources>
     <color name="white">#FFFFFFFF</color>
     <color name="black">#FF000000</color>
-    <!--для свайпов-->
-    <color name="yellow">#FFFFD60A</color>
-    <color name="red">#ffff453A</color>
 
-    <color name="rippleLight">#1F000000</color>
+    <!-- Swipes -->
+    <color name="yellow">#FFFFD60A</color>
+    <color name="red">#FFFF453A</color>
+
+    <color name="rippleLight">#26FFFFFF</color>
     <color name="rippleDark">#33FFFFFF</color>
 
-    <color name="toolbarLight">#F2F4F7</color>
-    <color name="toolbarDark">#161B22</color>
-    <color name="toolbarTranslucent">#B3000000</color>
+    <!-- Liquid Glass Obsidian Dark Palette -->
+    <color name="toolbarLight">#0E1017</color>
+    <color name="toolbarDark">#0E1017</color>
+    <color name="toolbarTranslucent">#CC0E1017</color>
 
-    <color name="backgroundLight">#F2F4F7</color>
-    <color name="backgroundGray">#EBEFF5</color> <!--EBEBEB-->
-    <color name="backgroundDark">#12151B</color> <!--192025-->
+    <color name="backgroundLight">#08090C</color>
+    <color name="backgroundGray">#08090C</color>
+    <color name="backgroundDark">#08090C</color>
 
-    <color name="textPrimary">#1C1C1E</color> <!--49555F-->
-    <color name="textPrimaryDisabled">#4C1C1C1E</color>
-    <color name="textSecondary">#636366</color>
-    <color name="textSecondaryDisabled">#4C636366</color>
-    <color name="textTertiary">#8E8E93</color> <!--Цвет текста в окне поиска, окне ввода сообщения, дата и шеврон-->
+    <color name="textPrimary">#FFFFFFFF</color>
+    <color name="textPrimaryDisabled">#7FFFFFFF</color>
+    <color name="textSecondary">#8E92A0</color>
+    <color name="textSecondaryDisabled">#4D8E92A0</color>
+    <color name="textTertiary">#5C6170</color>
 
-    <color name="textPrimaryDark">#FFFFFFFF</color> <!--FFFFFFFF-->
-    <color name="textPrimaryDisabledDark">#7FFFFFFF</color> <!--7FFFFFFF-->
-    <color name="textSecondaryDark">#A1A1A6</color> <!--ccffffff-->
-    <color name="textSecondaryDisabledDark">#67FFFFFF</color> <!--67ffffff-->
-    <color name="textTertiaryDark">#8E8E93</color> <!--80ffffff-->
-    <!--Окно поиска и ввода сообщения-->
-    <color name="bubbleLight">#E5E5EA</color> <!--ECEFF1-->
-    <color name="bubbleGray">#E5E5EA</color> <!--B9B9B9, f6f7f7-->
-    <color name="bubbleDark">#2C2C2E</color> <!--11171B-->
-    <color name="bubbleBlack">#1C1C1E</color> <!--0F1113-->
+    <color name="textPrimaryDark">#FFFFFFFF</color>
+    <color name="textPrimaryDisabledDark">#7FFFFFFF</color>
+    <color name="textSecondaryDark">#8E92A0</color>
+    <color name="textSecondaryDisabledDark">#4D8E92A0</color>
+    <color name="textTertiaryDark">#5C6170</color>
 
-    <color name="separatorLight">#1A000000</color>
-    <color name="separatorDark">#26FFFFFF</color>
+    <!-- Frosted Glass Cards & Bubbles -->
+    <color name="bubbleLight">#141722</color>
+    <color name="bubbleGray">#141722</color>
+    <color name="bubbleDark">#141722</color>
+    <color name="bubbleBlack">#12151F</color>
 
-    <color name="switchThumbEnabledLight">#ECECEC</color>
-    <color name="switchThumbEnabledGray">#FFFFFF</color>
-    <color name="switchThumbEnabledDark">#FFFFFF</color> <!--B9B9B9-->
+    <color name="separatorLight">#1F2433</color>
+    <color name="separatorDark">#1F2433</color>
 
-    <color name="switchTrackEnabledLight">#A6A6A6</color>
-    <color name="switchTrackEnabledDark">#3C3D41</color> <!--646464-->
+    <color name="switchThumbEnabledLight">#007AFF</color>
+    <color name="switchThumbEnabledGray">#007AFF</color>
+    <color name="switchThumbEnabledDark">#007AFF</color>
 
-    <color name="switchThumbDisabledLight">#B9B9B9</color>
-    <color name="switchThumbDisabledDark">#595959</color>
+    <color name="switchTrackEnabledLight">#263B5E</color>
+    <color name="switchTrackEnabledDark">#263B5E</color>
 
-    <color name="switchTrackDisabledLight">#D6D6D6</color>
-    <color name="switchTrackDisabledDark">#383838</color>
+    <color name="switchThumbDisabledLight">#505462</color>
+    <color name="switchThumbDisabledDark">#505462</color>
 
-    <!-- This colour should only ever be used for attrs with the tools tag -->
-    <color name="tools_theme">#007AFF</color> <!-- Apple iOS Blue -->
+    <color name="switchTrackDisabledLight">#1F232E</color>
+    <color name="switchTrackDisabledDark">#1F232E</color>
 
-    <color name="sim1">#5D99FF</color>
-    <color name="sim2">#06C9AF</color>
-    <color name="sim3">#F1AF28</color>
-    <color name="sim4">#FF6969</color>
-    <color name="sim_other">#7E57C2</color>
+    <!-- Accent -->
+    <color name="tools_theme">#007AFF</color>
+    <color name="apple_accent_blue">#007AFF</color>
+    <color name="apple_accent_cyan">#00C6FF</color>
+
+    <!-- SIM colors -->
+    <color name="sim1">#007AFF</color>
+    <color name="sim2">#30D158</color>
+    <color name="sim3">#FFD60A</color>
+    <color name="sim4">#FF453A</color>
+    <color name="sim_other">#BF5AF2</color>
 
     <array name="random_colors">
-        <item>#06C9AF</item>
-        <item>#6DC966</item>
-        <item>#F1AF28</item>
-        <item>#FF8963</item>
-        <item>#FF6969</item>
-        <item>#5D99FF</item>
-        <item>#8899EC</item>
+        <item>#007AFF</item>
+        <item>#30D158</item>
+        <item>#FFD60A</item>
+        <item>#FF9F0A</item>
+        <item>#FF453A</item>
+        <item>#BF5AF2</item>
+        <item>#5E5CE6</item>
+        <item>#64D2FF</item>
     </array>
 
     <array name="material_red">
@@ -405,17 +412,18 @@
         <item>#8A36BB</item>
     </array>
 
-    <!-- Apple Liquid Glass & iOS Glassmorphic Colors -->
-    <color name="glass_surface_light">#E6F6F8FC</color>
-    <color name="glass_surface_dark">#D91C2027</color>
-    <color name="glass_stroke_light">#40FFFFFF</color>
-    <color name="glass_stroke_dark">#26FFFFFF</color>
-    <color name="glass_bubble_in">#F0E5E7EB</color>
-    <color name="glass_bubble_out">#F0007AFF</color>
+    <!-- Apple Liquid Glass & HorizonX Glassmorphic Colors -->
+    <color name="glass_surface_light">#141722</color>
+    <color name="glass_surface_dark">#141722</color>
+    <color name="glass_stroke_light">#263147</color>
+    <color name="glass_stroke_dark">#263147</color>
+    <color name="glass_bubble_in">#141722</color>
+    <color name="glass_bubble_out">#007AFF</color>
     <color name="glass_bubble_out_gradient_start">#007AFF</color>
-    <color name="glass_bubble_out_gradient_end">#0A84FF</color>
-    <color name="apple_accent_blue">#007AFF</color>
-    <color name="apple_card_bg">#F2F5F9</color>
-    <color name="apple_card_bg_dark">#1E232B</color>
+    <color name="glass_bubble_out_gradient_end">#00C6FF</color>
+    <color name="apple_card_bg">#12151F</color>
+    <color name="apple_card_bg_dark">#12151F</color>
+    <color name="glass_card_bg">#12151F</color>
+    <color name="glass_card_stroke">#232838</color>
+    <color name="glass_card_stroke_active">#007AFF</color>
 </resources>
-

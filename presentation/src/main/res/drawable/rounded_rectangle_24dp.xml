@@ -1,20 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <!-- Outer subtle shadow / glow -->
     <item>
         <shape android:shape="rectangle">
-            <corners android:radius="20dp" />
-            <solid android:color="#0A000000" />
-        </shape>
-    </item>
-    <!-- Translucent Frosted Glass Base -->
-    <item android:top="1dp" android:bottom="1dp" android:left="1dp" android:right="1dp">
-        <shape android:shape="rectangle">
-            <corners android:radius="19dp" />
-            <solid android:color="?attr/bubbleColor" />
+            <corners android:radius="24dp" />
+            <solid android:color="@color/glass_surface_dark" />
             <stroke
                 android:width="1.2dp"
-                android:color="@color/glass_stroke_light" />
+                android:color="@color/glass_stroke_dark" />
         </shape>
     </item>
 </layer-list>
