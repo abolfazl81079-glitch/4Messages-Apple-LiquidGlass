@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/groupNameButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"
+        android:background="@drawable/button_background"
+        android:gravity="left|center_vertical"
+        android:paddingLeft="23dp"
+        android:paddingRight="23dp"
+        android:text="@string/info_name"
+        android:textAllCaps="false"
+        tools:ignore="RtlHardcoded" />
+
+    <Button
+        android:id="@+id/notificationsButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="3dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginRight="3dp"
+        android:background="@drawable/button_background"
+        android:drawableEnd="@drawable/ic_chevron_right_black_24dp"
+        android:drawableTint="?android:attr/textColorPrimary"
+        android:gravity="left|center_vertical"
+        android:paddingLeft="23dp"
+        android:paddingRight="23dp"
+        android:text="@string/info_notifications"
+        android:textAllCaps="false"
+        tools:ignore="RtlHardcoded" />
+
+    <Button
+        android:id="@+id/archiveButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"
+        android:background="@drawable/button_background"
+        android:gravity="left|center_vertical"
+        android:paddingLeft="23dp"
+        android:paddingRight="23dp"
+        android:text="@string/info_archive"
+        android:textAllCaps="false"
+        tools:ignore="RtlHardcoded" />
+
+    <Button
+        android:id="@+id/blockButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"
+        android:background="@drawable/button_background"
+        android:gravity="left|center_vertical"
+        android:paddingLeft="23dp"
+        android:paddingRight="23dp"
+        android:text="@string/info_block"
+        android:textAllCaps="false"
+        android:textColor="@color/red"
+        tools:ignore="RtlHardcoded" />
+
+    <Button
+        android:id="@+id/deleteButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="24dp"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"
+        android:background="@drawable/button_background"
+        android:gravity="left|center_vertical"
+        android:paddingLeft="23dp"
+        android:paddingRight="23dp"
+        android:text="@string/info_delete"
+        android:textAllCaps="false"
+        android:textColor="@color/red"
+        tools:ignore="RtlHardcoded" />
+
+</LinearLayout>

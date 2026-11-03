@@ -1,0 +1,49 @@
+﻿name: Build Android APK (Liquid Glass Edition)
+
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
+    - name: Set up JDK 8
+      uses: actions/setup-java@v3
+      with:
+        java-version: '8'
+        distribution: 'temurin'
+
+    - name: Grant Execute Permission for Gradlew
+      run: chmod +x gradlew
+
+    - name: Build Debug APK
+      run: ./gradlew assembleNoAnalyticsDebug --stacktrace --no-daemon
+
+    - name: Upload APK Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: 4Messages-LiquidGlass-APK
+        path: presentation/build/outputs/apk/noAnalytics/debug/*.apk
+
+    - name: Create Release
+      id: create_release
+      uses: softprops/action-gh-release@v1
+      if: startsWith(github.ref, 'refs/tags/') || github.event_name == 'workflow_dispatch' || github.ref == 'refs/heads/main'
+      with:
+        tag_name: v1.1.0-glass
+        name: "4Messages - Apple Liquid Glass Edition"
+        body: |
+          ### 4Messages - Apple Liquid Glass Edition ðŸðŸ’Ž
+          - **Liquid Glass Theme:** Modern frosted glass surfaces, subtle highlights & Apple squircle rounded design.
+          - **Apple Style Notifications & Quick Reply:** Translucent sleek notification reply modal.
+          - **Minimalist Glass Icon:** Brand new vector adaptive icon styled after modern iOS glass aesthetic.
+          - Download the APK below and install on your Android device.
+        files: presentation/build/outputs/apk/noAnalytics/debug/*.apk
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

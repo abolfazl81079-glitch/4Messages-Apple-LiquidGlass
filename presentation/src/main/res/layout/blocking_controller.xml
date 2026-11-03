@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?android:attr/windowBackground"
+    android:clipToPadding="false">
+
+    <LinearLayout
+        android:id="@+id/parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp">
+
+        <com.goodwy.messages.common.widget.PreferenceView
+            android:id="@+id/blockingManager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:title="@string/blocking_manager_title"
+            app:summary="@string/early_access"/>
+
+        <com.goodwy.messages.common.widget.PreferenceView
+            android:id="@+id/blockedNumbers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:title="@string/blocked_numbers_title"
+            app:widget="@layout/settings_chevron_widget" />
+
+        <com.goodwy.messages.common.widget.PreferenceView
+            android:id="@+id/blockedRegexps"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:title="@string/blocked_regexps_title"
+            app:summary="@string/early_access"
+            app:widget="@layout/settings_chevron_widget" />
+
+        <com.goodwy.messages.common.widget.PreferenceView
+            android:id="@+id/drop"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:summary="@string/blocking_drop_summary"
+            app:title="@string/blocking_drop_title"
+            app:widget="@layout/settings_switch_widget" />
+
+        <com.goodwy.messages.common.widget.PreferenceView
+            android:id="@+id/blockedMessages"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:title="@string/blocked_messages_title"
+            app:widget="@layout/settings_chevron_widget" />
+
+    </LinearLayout>
+
+</ScrollView>
