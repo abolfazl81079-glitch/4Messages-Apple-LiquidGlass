@@ -15,13 +15,15 @@ object ConversationAppearanceDialog {
     data class CellHeightOption(val name: String, val heightIndex: Int)
 
     val GLASS_TINTS = listOf(
-        GlassTint("شیشه شفاف نقره‌ای (پیش‌فرض)", 0),
-        GlassTint("شیشه آبی اقیانوسی (iOS Blue)", 0x3D007AFF),
-        GlassTint("شیشه زمردی کریستالی (Emerald)", 0x3D34C759),
-        GlassTint("شیشه بنفش کیهانی (Purple)", 0x3DAF52DE),
-        GlassTint("شیشه یاقوتی (Ruby Red)", 0x3DFF2D55),
-        GlassTint("شیشه کهربایی طلایی (Amber)", 0x3DFF9500),
-        GlassTint("شیشه دودی مات (Frosted Dark)", 0x59000000.toInt())
+        GlassTint("AB Cyber Blue (پیش‌فرض سیستم)", 0),
+        GlassTint("Blackout (مشکی خالص OLED)", 0x59000000.toInt()),
+        GlassTint("Neon Matrix (سبز نئونی هکر)", 0x3D00FF66),
+        GlassTint("Arctic Glass (آبی یخی و فیروزه‌ای)", 0x3D00E5FF),
+        GlassTint("Ghost Protocol (نقره‌ای صنعتی)", 0x3DC0C5CE),
+        GlassTint("Deep Ocean (آبی عمیق اقیانوسی)", 0x3D0077BE),
+        GlassTint("Crimson Hacker (قرمز هکری کریسمون)", 0x3DFF003C),
+        GlassTint("Quantum (بنفش کوانتوم)", 0x3DBD00FF),
+        GlassTint("Minimal Glass (شیشه کریستالی مات)", 0x2E7892A8)
     )
 
     val CELL_HEIGHTS = listOf(

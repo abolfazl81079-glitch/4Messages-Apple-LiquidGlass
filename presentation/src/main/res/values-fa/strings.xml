@@ -18,6 +18,7 @@
   ~ along with 4Messages.  If not, see <http://www.gnu.org/licenses/>.
   -->
 <resources>
+    <string name="message_status_sent">ارسال شد</string>
     <string name="settings_night_mode_toggle_title">تم شیشه‌ای شب (حالت شب)</string>
     <string name="settings_night_mode_toggle_summary">تغییر مستقیم بین تم شیشه‌ای روز و شب</string>
     <string name="customize_cell_title">تنظیمات ظاهر مخاطب</string>

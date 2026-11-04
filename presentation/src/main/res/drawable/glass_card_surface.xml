@@ -1,55 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <!-- Ambient Glass Drop Shadow -->
+    <!-- Cyber Industrial Shadow -->
     <item
-        android:left="1dp"
-        android:right="1dp"
+        android:left="0dp"
+        android:right="0dp"
         android:top="2dp"
         android:bottom="0dp">
         <shape android:shape="rectangle">
-            <corners android:radius="20dp" />
-            <solid android:color="#2A050B14" />
+            <corners android:radius="4dp" />
+            <solid android:color="#4D030609" />
         </shape>
     </item>
 
-    <!-- Translucent Liquid Glass Body with Depth Gradient -->
+    <!-- Translucent Cyber Glass Surface -->
     <item
         android:left="0dp"
         android:right="0dp"
         android:top="0dp"
         android:bottom="2dp">
         <shape android:shape="rectangle">
-            <corners android:radius="20dp" />
+            <corners android:radius="4dp" />
             <gradient
                 android:angle="270"
-                android:startColor="#26FFFFFF"
-                android:centerColor="#14FFFFFF"
-                android:endColor="#0AFFFFFF"
+                android:startColor="#1E0B1622"
+                android:centerColor="#14070D14"
+                android:endColor="#0F030609"
                 android:type="linear" />
-            <!-- Crisp Luminous White Glass Rim Stroke -->
+            <!-- Thin Cyber Neon Cyan Border -->
             <stroke
-                android:width="2dp"
-                android:color="#59FFFFFF" />
+                android:width="1dp"
+                android:color="#3300E5FF" />
         </shape>
     </item>
 
-    <!-- Top Specular Glare / Reflection Highlight (as in user sample image) -->
+    <!-- Top Specular Terminal Glare -->
     <item
-        android:left="4dp"
-        android:right="4dp"
+        android:left="2dp"
+        android:right="2dp"
         android:top="1dp"
-        android:bottom="20dp">
+        android:bottom="36dp">
         <shape android:shape="rectangle">
             <corners
-                android:topLeftRadius="19dp"
-                android:topRightRadius="19dp"
-                android:bottomLeftRadius="6dp"
-                android:bottomRightRadius="6dp" />
+                android:topLeftRadius="3dp"
+                android:topRightRadius="3dp"
+                android:bottomLeftRadius="1dp"
+                android:bottomRightRadius="1dp" />
             <gradient
                 android:angle="270"
-                android:startColor="#66FFFFFF"
-                android:centerColor="#1AFFFFFF"
-                android:endColor="#00FFFFFF"
+                android:startColor="#2600E5FF"
+                android:centerColor="#0D008CFF"
+                android:endColor="#00000000"
                 android:type="linear" />
         </shape>
     </item>

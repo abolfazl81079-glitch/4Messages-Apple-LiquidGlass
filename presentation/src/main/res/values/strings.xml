@@ -1,6 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <string name="app_name" translatable="false">AB-SMS</string>
+    <string name="app_name" translatable="false">AB/SMS</string>
+    <string name="message_status_sent">Sent</string>
     <string name="settings_night_mode_toggle_title">Dark Glass Theme (Night Mode)</string>
     <string name="settings_night_mode_toggle_summary">Toggle directly between Day and Night Glass themes</string>
     <string name="customize_cell_title">Customize Contact Cell</string>

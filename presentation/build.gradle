@@ -13,9 +13,9 @@ android {
         applicationId "com.goodwy.messages"
         minSdkVersion 21
         targetSdkVersion 30
-        versionCode 270
-        versionName "2.7.0"
-        setProperty("archivesBaseName", "AB-SMS-v${versionName}")
+        versionCode 100
+        versionName "1.0.0"
+        setProperty("archivesBaseName", "AB_SMS-v${versionName}")
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 

@@ -149,6 +149,16 @@ class MainActivity : QkThemedActivity(), MainView {
             AppUpdateManager.checkForUpdate(this, showUpToDateToast = true)
         }
 
+        // Animate Cyber Brand Title
+        brandTitle?.let { titleView ->
+            android.animation.ObjectAnimator.ofFloat(titleView, "alpha", 0.7f, 1.0f).apply {
+                duration = 1800
+                repeatMode = android.animation.ValueAnimator.REVERSE
+                repeatCount = android.animation.ValueAnimator.INFINITE
+                start()
+            }
+        }
+
         // Set the theme color tint to the recyclerView, progressbar, and FAB
         theme
                 .autoDisposable(scope())

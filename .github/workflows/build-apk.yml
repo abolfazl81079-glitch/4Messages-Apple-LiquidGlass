@@ -50,19 +50,50 @@ jobs:
       uses: softprops/action-gh-release@v2
       if: startsWith(github.ref, 'refs/tags/') || github.event_name == 'workflow_dispatch' || github.ref == 'refs/heads/main'
       with:
-        tag_name: v2.7.0-complete
-        name: "AB-SMS - Complete Edition v2.7.0 (Crash-Free, Contact Photos & Auto-Updater)"
+        tag_name: v1.0.0
+        name: "AB/SMS v1.0.0 - Cyberpunk Hacker Liquid Glass Official Release"
         body: |
-          ### AB-SMS - Apple Liquid Glass Edition v2.7.0 (Complete & Stable) 💎📱
-          - **Default SMS App Crash Fixed:** Completely resolved the crash and freeze when granting notification permission and setting AB-SMS as default SMS app. Elimination of UI-thread blocking and thread-safe progress animation.
-          - **Custom Contact Profile Pictures (Avatars):** Long-press on any conversation card now allows you to set a custom profile photo from your gallery or remove it.
-          - **In-App GitHub Release Auto-Updater:** Easily check for updates directly from the side drawer or Settings. If a newer release is published on GitHub, it automatically downloads the APK with live progress and prompts installation. If already up to date, it confirms you have the latest version.
-          - **App Name:** AB-SMS
-          - **Apple iOS Blue & White Icon:** Vibrant Apple blue gradient background with pure white chat bubble icon across all densities and adaptive icons.
-          - **Liquid Glass Visual System:** Crystal transparent card panels with specular glare, soft frosted refraction, and glowing white highlights matching the reference design.
-          - **Per-Contact Cell Customization:** Long-press any contact cell to customize glass tint color (iOS Blue, Emerald, Purple, Ruby, Amber, Obsidian) and adjust cell height (Compact, Standard, Comfortable, Spacious).
-          - **Day & Night Switch:** Direct toggle in Settings to switch between Day Glass and Night Glass themes.
-          - **Fixed Settings Switches:** Pure white thumb with iOS blue active track.
+          # AB/SMS v1.0.0 - Professional Cyberpunk Hacker Glass Android SMS ⚡📱
+          
+          ### 1. Identity & Visual Direction
+          - **Application Name:** AB/SMS
+          - **Visual Design:** Cyberpunk + Hacker Interface + Liquid Glass + Futuristic Industrial UI
+          - **Color Palette:** Deep black (#030609), Dark background (#070D14), Secondary background (#0B1622), Electric blue (#008CFF), Neon cyan (#00E5FF), Glass blue, White (#EAF6FF), Secondary text (#7892A8).
+          - **Geometry:** Sharp rectangular geometry, square corners, thin electric cyan/blue neon glowing borders, layered liquid glass depth.
+          - **Branding:** High-resolution launcher icons with prominent futuristic "AB/SMS" letters and animated glowing neon header.
+          
+          ### 2. Intelligent Number Detection & Smart Copy (CRITICAL FEATURE)
+          - Deep regex & semantic parsing of message text to detect:
+            * Mobile & phone numbers (Iranian 09... and international numbers)
+            * 16-digit Bank Cards with local Luhn algorithm verification and Iranian bank identification
+            * IBAN / Sheba (IR...)
+            * One-time verification codes (OTP)
+            * Postal tracking codes
+          - Automatic Persian and Arabic numeral normalization (۰۱۲۳۴۵۶۷۸۹ -> 0123456789)
+          - One-tap Smart Actions dialog: Copy Normalized, Copy Original, Call Number, Card Validity Check.
+          
+          ### 3. Advanced Delivery Reports & Two-Checkmark Status System
+          - Real SMS carrier delivery reports via Android telephony APIs.
+          - Custom visual status:
+            * One checkmark: SMS submitted/sent
+            * Two electric cyan checkmarks: Carrier delivery report confirmed
+            * Clock icon: Pending / in delayed sending queue
+            * Warning icon: Sending failed (tap to retry)
+          
+          ### 4. Delayed Sending & Scheduled SMS
+          - Configurable delay before sending (1s, 2s, 3s, 5s, 10s, 15s, 30s) with live countdown progress bar and instant "Cancel Sending" button.
+          - Full Scheduled SMS support for future dates and times.
+          
+          ### 5. Persian & English Full Support
+          - Full Persian RTL layout and English LTR layout.
+          - Built-in Jalali (Shamsi) Persian Calendar engine with Persian digits and month names.
+          
+          ### 6. Contact Customization & 9 Built-in Cyber Themes
+          - Custom contact profile photos from gallery or removal.
+          - 9 Built-in Cyber Themes: AB Cyber Blue, Blackout, Neon Matrix, Arctic Glass, Ghost Protocol, Deep Ocean, Crimson Hacker, Quantum, Minimal Glass.
+          
+          ### 7. In-App GitHub Auto-Updater
+          - In-app check for updates via GitHub Releases API, live download progress, and FileProvider installation.
         files: presentation/build/outputs/apk/noAnalytics/debug/*.apk
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

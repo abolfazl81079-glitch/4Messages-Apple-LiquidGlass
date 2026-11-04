@@ -1,6 +1,7 @@
 package com.goodwy.messages.feature.compose
 
 import android.animation.ObjectAnimator
+import android.app.Activity
 import android.content.Context
 import android.graphics.Typeface
 import android.os.Build
@@ -149,8 +150,15 @@ class MessagesAdapter @Inject constructor(
                     true -> view.isActivated = isSelected(message.id)
                     false -> {
                         clicks.onNext(message.id)
-                        expanded[message.id] = view.status.visibility != View.VISIBLE
-                        notifyItemChanged(adapterPosition)
+                        val text = message.body.ifEmpty { message.parts.filter { it.isText() }.mapNotNull { it.text }.joinToString("\n") }
+                        val entities = com.goodwy.messages.common.util.SmartNumberDetector.detect(text)
+                        val act = context as? Activity
+                        if (entities.isNotEmpty() && act != null) {
+                            SmartActionsDialog.show(act, text)
+                        } else {
+                            expanded[message.id] = view.status.visibility != View.VISIBLE
+                            notifyItemChanged(adapterPosition)
+                        }
                     }
                 }
             }
@@ -338,19 +346,32 @@ class MessagesAdapter @Inject constructor(
 
     private fun bindStatus(holder: QkViewHolder, message: Message, next: Message?) {
         val age = TimeUnit.MILLISECONDS.toMinutes(System.currentTimeMillis() - message.date)
+        val isSent = message.isMe() && !message.isSending() && !message.isFailedMessage()
 
         holder.status.text = when {
             message.isSending() -> context.getString(R.string.message_status_sending)
             message.isDelivered() -> context.getString(R.string.message_status_delivered,
                     dateFormatter.getTimestamp(message.dateSent))
             message.isFailedMessage() -> context.getString(R.string.message_status_failed)
-
-            // Incoming group message
             !message.isMe() && conversation?.recipients?.size ?: 0 > 1 -> {
                 "${contactCache[message.address]?.getDisplayName()} • ${dateFormatter.getTimestamp(message.date)}"
             }
-
+            isSent -> "${context.getString(R.string.message_status_sent)} • ${dateFormatter.getTimestamp(message.date)}"
             else -> dateFormatter.getTimestamp(message.date)
+        }
+
+        val statusIcon = when {
+            message.isSending() -> R.drawable.ic_status_pending_clock
+            message.isDelivered() -> R.drawable.ic_status_delivered_double
+            message.isFailedMessage() -> R.drawable.ic_status_failed_warning
+            isSent -> R.drawable.ic_status_sent_single
+            else -> 0
+        }
+        if (statusIcon != 0) {
+            holder.status.setCompoundDrawablesWithIntrinsicBounds(0, 0, statusIcon, 0)
+            holder.status.compoundDrawablePadding = 4.dpToPx(context)
+        } else {
+            holder.status.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
         }
 
         holder.status.setVisible(when {
@@ -360,7 +381,7 @@ class MessagesAdapter @Inject constructor(
             expanded[message.id] == false -> false
             conversation?.recipients?.size ?: 0 > 1 && !message.isMe() && next?.compareSender(message) != true -> true
             message.isDelivered() && next?.isDelivered() != true && age <= BubbleUtils.TIMESTAMP_THRESHOLD -> true
-            else -> false
+            else -> true
         })
     }
 

@@ -196,40 +196,40 @@ class ConversationsAdapter @Inject constructor(
     }
 
     private fun createCustomGlassDrawable(context: Context, tintColor: Int, isActivated: Boolean): Drawable {
-        val radius = 20.dpToPx(context).toFloat()
+        val radius = 4.dpToPx(context).toFloat()
 
         val shadow = GradientDrawable().apply {
             cornerRadius = radius
-            setColor(0x2A050B14.toInt())
+            setColor(0x4D030609.toInt())
         }
 
         val glassBody = GradientDrawable(
             GradientDrawable.Orientation.TOP_BOTTOM,
             intArrayOf(
                 tintColor,
-                tintColor and 0x00FFFFFF or 0x14000000,
-                tintColor and 0x00FFFFFF or 0x0A000000
+                tintColor and 0x00FFFFFF or 0x1E0B1622.toInt(),
+                tintColor and 0x00FFFFFF or 0x0F030609.toInt()
             )
         ).apply {
             cornerRadius = radius
             if (isActivated) {
-                setStroke(2.dpToPx(context), 0xFF007AFF.toInt())
+                setStroke(2.dpToPx(context), 0xFF00E5FF.toInt())
             } else {
-                setStroke(2.dpToPx(context), 0x66FFFFFF.toInt())
+                setStroke(1.dpToPx(context), 0x4D00E5FF.toInt())
             }
         }
 
         val glare = GradientDrawable(
             GradientDrawable.Orientation.TOP_BOTTOM,
-            intArrayOf(0x66FFFFFF.toInt(), 0x1AFFFFFF.toInt(), 0x00FFFFFF.toInt())
+            intArrayOf(0x3300E5FF.toInt(), 0x14008CFF.toInt(), 0x00000000)
         ).apply {
-            cornerRadii = floatArrayOf(radius, radius, radius, radius, 8f, 8f, 8f, 8f)
+            cornerRadii = floatArrayOf(radius, radius, radius, radius, 2f, 2f, 2f, 2f)
         }
 
         return LayerDrawable(arrayOf(shadow, glassBody, glare)).apply {
-            setLayerInset(0, 1.dpToPx(context), 2.dpToPx(context), 1.dpToPx(context), 0)
+            setLayerInset(0, 0, 2.dpToPx(context), 0, 0)
             setLayerInset(1, 0, 0, 0, 2.dpToPx(context))
-            setLayerInset(2, 4.dpToPx(context), 1.dpToPx(context), 4.dpToPx(context), 20.dpToPx(context))
+            setLayerInset(2, 2.dpToPx(context), 1.dpToPx(context), 2.dpToPx(context), 28.dpToPx(context))
         }
     }
 

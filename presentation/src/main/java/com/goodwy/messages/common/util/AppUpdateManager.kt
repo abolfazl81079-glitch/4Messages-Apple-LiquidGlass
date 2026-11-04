@@ -23,7 +23,7 @@ object AppUpdateManager {
 
     private const val GITHUB_REPO = "abolfazl81079-glitch/4Messages-Apple-LiquidGlass"
     private const val LATEST_RELEASE_API = "https://api.github.com/repos/$GITHUB_REPO/releases/latest"
-    const val CURRENT_TAG = "v2.7.0-complete"
+    const val CURRENT_TAG = "v1.0.0"
 
     fun checkForUpdate(activity: Activity, showUpToDateToast: Boolean = true) {
         val handler = Handler(Looper.getMainLooper())
