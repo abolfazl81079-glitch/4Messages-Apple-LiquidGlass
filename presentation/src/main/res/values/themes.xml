@@ -32,7 +32,7 @@
         <item name="colorAccent">@color/apple_accent_blue</item>
         <item name="colorPrimary">#E6EEF8</item>
         <item name="colorPrimaryDark">#D5DFEC</item>
-        <item name="selectableItemBackground">@drawable/ripple_light</item>
+        <item name="selectableItemBackground">@drawable/ripple</item>
         <item name="switchThumbEnabled">#FFFFFF</item>
         <item name="switchThumbDisabled">#D1D1D6</item>
         <item name="switchTrackEnabled">#007AFF</item>
