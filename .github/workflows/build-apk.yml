@@ -50,17 +50,19 @@ jobs:
       uses: softprops/action-gh-release@v2
       if: startsWith(github.ref, 'refs/tags/') || github.event_name == 'workflow_dispatch' || github.ref == 'refs/heads/main'
       with:
-        tag_name: v2.6.0-stable-liquidglass
-        name: "AB-SMS - Stable Liquid Glass Edition v2.6"
+        tag_name: v2.7.0-complete
+        name: "AB-SMS - Complete Edition v2.7.0 (Crash-Free, Contact Photos & Auto-Updater)"
         body: |
-          ### AB-SMS - Apple Liquid Glass Edition v2.6 (Crash Fix & Stable) 💎📱
-          - **Startup Crash Fixed:** Resolved circular theme inheritance between AppTheme and AppTheme.Black, fixed decimal drawable dimension strokes, and stabilized launch sequence.
+          ### AB-SMS - Apple Liquid Glass Edition v2.7.0 (Complete & Stable) 💎📱
+          - **Default SMS App Crash Fixed:** Completely resolved the crash and freeze when granting notification permission and setting AB-SMS as default SMS app. Elimination of UI-thread blocking and thread-safe progress animation.
+          - **Custom Contact Profile Pictures (Avatars):** Long-press on any conversation card now allows you to set a custom profile photo from your gallery or remove it.
+          - **In-App GitHub Release Auto-Updater:** Easily check for updates directly from the side drawer or Settings. If a newer release is published on GitHub, it automatically downloads the APK with live progress and prompts installation. If already up to date, it confirms you have the latest version.
           - **App Name:** AB-SMS
-          - **All-New Apple Blue & White Icon:** High-resolution icons with iOS Messages blue gradient and clean brilliant white chat symbol across all densities (mdpi to xxxhdpi) and adaptive icons.
-          - **True Liquid Glass Design:** Realistic translucent glass surfaces, specular top rim gleam, delicate white glow borders, and soft slate-metallic glass background matching the user reference image.
-          - **Per-Contact Cell Customization (Long-Press):** Long press on any conversation card in the main list to open a customization menu to choose custom glass color tints (iOS Blue, Emerald, Purple, Ruby, Amber, Obsidian) and adjust cell height dimensions (Compact, Standard, Comfortable, Spacious).
-          - **Day & Night Mode Switch in Settings:** Direct toggle in Settings to switch between Day Glass and Night Glass themes immediately.
-          - **Fixed Settings Switches & Checkmarks:** Switches now correctly display pure white knobs and vibrant Apple Blue active tracks when checked, and muted tracks when unchecked without double-coloring.
+          - **Apple iOS Blue & White Icon:** Vibrant Apple blue gradient background with pure white chat bubble icon across all densities and adaptive icons.
+          - **Liquid Glass Visual System:** Crystal transparent card panels with specular glare, soft frosted refraction, and glowing white highlights matching the reference design.
+          - **Per-Contact Cell Customization:** Long-press any contact cell to customize glass tint color (iOS Blue, Emerald, Purple, Ruby, Amber, Obsidian) and adjust cell height (Compact, Standard, Comfortable, Spacious).
+          - **Day & Night Switch:** Direct toggle in Settings to switch between Day Glass and Night Glass themes.
+          - **Fixed Settings Switches:** Pure white thumb with iOS blue active track.
         files: presentation/build/outputs/apk/noAnalytics/debug/*.apk
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

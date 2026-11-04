@@ -231,6 +231,8 @@ class SettingsPresenter @Inject constructor(
 
                         R.id.sync -> syncMessages.execute(Unit)
 
+                        R.id.checkUpdate -> view.checkUpdate()
+
                         R.id.about -> view.showAbout()
                     }
                 }

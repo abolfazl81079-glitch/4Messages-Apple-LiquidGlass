@@ -19,6 +19,7 @@ import com.goodwy.messages.common.MenuItem
 import com.goodwy.messages.common.ChangeHandler
 import com.goodwy.messages.common.Dialog
 import com.goodwy.messages.common.base.QkController
+import com.goodwy.messages.common.util.AppUpdateManager
 import com.goodwy.messages.common.util.Colors
 import com.goodwy.messages.common.util.extensions.animateLayoutChanges
 import com.goodwy.messages.common.util.extensions.resolveThemeColor
@@ -122,6 +123,7 @@ class SettingsController : QkController<SettingsView, SettingsState, SettingsPre
         simConfigure.chevron.imageTintList = imageTintList
         notifications.chevron.imageTintList = imageTintList
         swipeActions.chevron.imageTintList = imageTintList
+        checkUpdate.chevron.imageTintList = imageTintList
         about.chevron.imageTintList = imageTintList
     }
 
@@ -160,6 +162,7 @@ class SettingsController : QkController<SettingsView, SettingsState, SettingsPre
         simConfigure.chevron.setImageResource(R.drawable.ic_chevron_right_black_24dp)
         notifications.chevron.setImageResource(R.drawable.ic_chevron_right_black_24dp)
         swipeActions.chevron.setImageResource(R.drawable.ic_chevron_right_black_24dp)
+        checkUpdate.chevron.setImageResource(R.drawable.ic_chevron_right_black_24dp)
         about.chevron.setImageResource(R.drawable.ic_chevron_right_black_24dp)
 
         nightToggle.checkbox.isChecked = (state.nightModeId != Preferences.NIGHT_MODE_OFF)
@@ -306,6 +309,12 @@ class SettingsController : QkController<SettingsView, SettingsState, SettingsPre
         router.pushController(RouterTransaction.with(AboutController())
                 .pushChangeHandler(ChangeHandler())
                 .popChangeHandler(ChangeHandler()))
+    }
+
+    override fun checkUpdate() {
+        activity?.let { act ->
+            AppUpdateManager.checkForUpdate(act, showUpToDateToast = true)
+        }
     }
 
 }

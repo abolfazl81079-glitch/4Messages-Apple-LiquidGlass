@@ -2,6 +2,7 @@ package com.goodwy.messages.feature.main
 
 import android.Manifest
 import android.animation.ObjectAnimator
+import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
 import android.content.res.ColorStateList
@@ -12,6 +13,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewStub
+import android.widget.ProgressBar
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.app.ActivityCompat
 import androidx.core.view.GravityCompat
@@ -27,6 +29,7 @@ import com.goodwy.messages.R
 import com.goodwy.messages.common.Navigator
 import com.goodwy.messages.common.androidxcompat.drawerOpen
 import com.goodwy.messages.common.base.QkThemedActivity
+import com.goodwy.messages.common.util.AppUpdateManager
 import com.goodwy.messages.common.util.extensions.autoScrollToStart
 import com.goodwy.messages.common.util.extensions.dismissKeyboard
 import com.goodwy.messages.common.util.extensions.resolveThemeColor
@@ -103,7 +106,6 @@ class MainActivity : QkThemedActivity(), MainView {
     private val viewModel by lazy { ViewModelProviders.of(this, viewModelFactory)[MainViewModel::class.java] }
     private val toggle by lazy { ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.main_drawer_open_cd, 0) }
     private val itemTouchHelper by lazy { ItemTouchHelper(itemTouchCallback) }
-    private val progressAnimator by lazy { ObjectAnimator.ofInt(syncingProgress, "progress", 0, 0) }
     private val changelogDialog by lazy { ChangelogDialog(this) }
     private val snackbar by lazy { findViewById<View>(R.id.snackbar) }
     private val syncing by lazy { findViewById<View>(R.id.syncing) }
@@ -122,9 +124,11 @@ class MainActivity : QkThemedActivity(), MainView {
                     .subscribe(snackbarButtonIntent)
         }
 
-        (syncing as? ViewStub)?.setOnInflateListener { _, _ ->
-            syncingProgress?.progressTintList = ColorStateList.valueOf(theme.blockingFirst().theme)
-            syncingProgress?.indeterminateTintList = ColorStateList.valueOf(theme.blockingFirst().theme)
+        (syncing as? ViewStub)?.setOnInflateListener { _, inflated ->
+            val color = try { colors.theme().theme } catch (e: Exception) { 0xFF007AFF.toInt() }
+            val progressView = inflated.findViewById<ProgressBar>(R.id.syncingProgress)
+            progressView?.progressTintList = ColorStateList.valueOf(color)
+            progressView?.indeterminateTintList = ColorStateList.valueOf(color)
         }
 
         toggle.syncState()
@@ -138,6 +142,12 @@ class MainActivity : QkThemedActivity(), MainView {
 
         // Don't allow clicks to pass through the drawer layout
         drawer.clicks().autoDisposable(scope()).subscribe()
+
+        // Handle drawer app update click
+        appUpdate?.clicks()?.autoDisposable(scope())?.subscribe {
+            drawerLayout.closeDrawer(GravityCompat.START)
+            AppUpdateManager.checkForUpdate(this, showUpToDateToast = true)
+        }
 
         // Set the theme color tint to the recyclerView, progressbar, and FAB
         theme
@@ -160,8 +170,10 @@ class MainActivity : QkThemedActivity(), MainView {
                         badge.setBackgroundTint(theme.theme)
                         badge.setTextColor(theme.textPrimary)
                     }
-                    syncingProgress?.progressTintList = ColorStateList.valueOf(theme.theme)
-                    syncingProgress?.indeterminateTintList = ColorStateList.valueOf(theme.theme)
+                    findViewById<ProgressBar>(R.id.syncingProgress)?.let { pb ->
+                        pb.progressTintList = ColorStateList.valueOf(theme.theme)
+                        pb.indeterminateTintList = ColorStateList.valueOf(theme.theme)
+                    }
                     plusIcon.setTint(theme.theme)
                     rateIcon.setTint(theme.theme)
                     compose.setBackgroundTint(theme.theme)
@@ -303,15 +315,18 @@ class MainActivity : QkThemedActivity(), MainView {
 
         when (state.syncing) {
             is SyncRepository.SyncProgress.Idle -> {
-                syncing.isVisible = false
+                findViewById<View>(R.id.syncing)?.isVisible = false
                 snackbar.isVisible = !state.defaultSms || !state.smsPermission || !state.contactPermission
             }
 
             is SyncRepository.SyncProgress.Running -> {
-                syncing.isVisible = true
-                syncingProgress.max = state.syncing.max
-                progressAnimator.apply { setIntValues(syncingProgress.progress, state.syncing.progress) }.start()
-                syncingProgress.isIndeterminate = state.syncing.indeterminate
+                findViewById<View>(R.id.syncing)?.isVisible = true
+                val progressView = findViewById<ProgressBar>(R.id.syncingProgress)
+                progressView?.let { pb ->
+                    pb.max = state.syncing.max
+                    ObjectAnimator.ofInt(pb, "progress", pb.progress, state.syncing.progress).start()
+                    pb.isIndeterminate = state.syncing.indeterminate
+                }
                 snackbar.isVisible = false
             }
         }
@@ -422,6 +437,34 @@ class MainActivity : QkThemedActivity(), MainView {
 
     override fun onBackPressed() {
         backPressedSubject.onNext(NavItem.BACK)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQUEST_CODE_PICK_AVATAR && resultCode == Activity.RESULT_OK && data?.data != null) {
+            val uri = data.data ?: return
+            val convId = prefs.sharedPrefs.getLong("pending_avatar_conv_id", 0L)
+            if (convId != 0L) {
+                try {
+                    val avatarDir = java.io.File(filesDir, "avatars").apply { if (!exists()) mkdirs() }
+                    val destFile = java.io.File(avatarDir, "avatar_$convId.png")
+                    contentResolver.openInputStream(uri)?.use { input ->
+                        destFile.outputStream().use { output ->
+                            input.copyTo(output)
+                        }
+                    }
+                    prefs.sharedPrefs.edit().putString("custom_avatar_$convId", destFile.absolutePath).apply()
+                    conversationsAdapter.notifyDataSetChanged()
+                    android.widget.Toast.makeText(this, "تصویر پروفایل مخاطب با موفقیت به‌روزرسانی شد", android.widget.Toast.LENGTH_SHORT).show()
+                } catch (e: Exception) {
+                    android.widget.Toast.makeText(this, "خطا در ذخیره تصویر: ${e.message}", android.widget.Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+
+    companion object {
+        const val REQUEST_CODE_PICK_AVATAR = 9981
     }
 
 }

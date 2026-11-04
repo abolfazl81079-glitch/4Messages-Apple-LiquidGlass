@@ -13,12 +13,10 @@ android {
         applicationId "com.goodwy.messages"
         minSdkVersion 21
         targetSdkVersion 30
-        versionCode 110
-        versionName "1.1.0" //если последняя цифра ноль, то не работают бэкапы
-        setProperty("archivesBaseName", "4Messages-v${versionName}")
+        versionCode 270
+        versionName "2.7.0"
+        setProperty("archivesBaseName", "AB-SMS-v${versionName}")
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
-        setProperty("archivesBaseName", "4Messages-v${versionName}")
     }
 
     signingConfigs {

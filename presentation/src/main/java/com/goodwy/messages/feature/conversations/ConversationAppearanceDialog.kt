@@ -1,9 +1,13 @@
 package com.goodwy.messages.feature.conversations
 
 import android.app.Activity
+import android.content.Intent
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import com.goodwy.messages.feature.main.MainActivity
 import com.goodwy.messages.model.Conversation
 import com.goodwy.messages.util.Preferences
+import java.io.File
 
 object ConversationAppearanceDialog {
 
@@ -36,25 +40,63 @@ object ConversationAppearanceDialog {
     ) {
         val colorKey = "custom_cell_color_${conversation.id}"
         val heightKey = "custom_cell_height_${conversation.id}"
+        val avatarKey = "custom_avatar_${conversation.id}"
+        val hasCustomAvatar = prefs.sharedPrefs.getString(avatarKey, null) != null
 
-        val options = arrayOf(
+        val optionsList = mutableListOf(
             "🎨 تغییر رنگ شیشه‌ای این مخاطب",
             "📏 تغییر ابعاد و ارتفاع سلول",
-            "🔄 بازنشانی ظاهر به پیش‌فرض",
-            "✅ انتخاب این مکالمه (Select)"
+            "📸 انتخاب عکس پروفایل مخاطب (از گالری)"
         )
+        if (hasCustomAvatar) {
+            optionsList.add("🗑️ حذف عکس پروفایل سفارشی")
+        }
+        optionsList.add("🔄 بازنشانی تمام تنظیمات به پیش‌فرض")
+        optionsList.add("✅ انتخاب این مکالمه (Select)")
+
+        val options = optionsList.toTypedArray()
 
         AlertDialog.Builder(activity)
             .setTitle(conversation.getTitle())
             .setItems(options) { _, which ->
-                when (which) {
-                    0 -> showColorPicker(activity, conversation, prefs, onAppearanceChanged)
-                    1 -> showHeightPicker(activity, conversation, prefs, onAppearanceChanged)
-                    2 -> {
-                        prefs.sharedPrefs.edit().remove(colorKey).remove(heightKey).apply()
-                        onAppearanceChanged()
+                val selectedText = options[which]
+                when {
+                    selectedText.contains("رنگ") -> showColorPicker(activity, conversation, prefs, onAppearanceChanged)
+                    selectedText.contains("ارتفاع") -> showHeightPicker(activity, conversation, prefs, onAppearanceChanged)
+                    selectedText.contains("انتخاب عکس") -> {
+                        prefs.sharedPrefs.edit().putLong("pending_avatar_conv_id", conversation.id).apply()
+                        val intent = Intent(Intent.ACTION_GET_CONTENT).apply {
+                            type = "image/*"
+                            addCategory(Intent.CATEGORY_OPENABLE)
+                        }
+                        try {
+                            activity.startActivityForResult(
+                                Intent.createChooser(intent, "انتخاب تصویر پروفایل مخاطب"),
+                                MainActivity.REQUEST_CODE_PICK_AVATAR
+                            )
+                        } catch (e: Exception) {
+                            Toast.makeText(activity, "برنامه گالری در دستگاه یافت نشد: ${e.message}", Toast.LENGTH_SHORT).show()
+                        }
                     }
-                    3 -> onSelectClicked()
+                    selectedText.contains("حذف عکس") -> {
+                        val path = prefs.sharedPrefs.getString(avatarKey, null)
+                        if (path != null) {
+                            try { File(path).delete() } catch (e: Exception) {}
+                        }
+                        prefs.sharedPrefs.edit().remove(avatarKey).apply()
+                        onAppearanceChanged()
+                        Toast.makeText(activity, "عکس پروفایل سفارشی مخاطب حذف شد", Toast.LENGTH_SHORT).show()
+                    }
+                    selectedText.contains("بازنشانی") -> {
+                        val path = prefs.sharedPrefs.getString(avatarKey, null)
+                        if (path != null) {
+                            try { File(path).delete() } catch (e: Exception) {}
+                        }
+                        prefs.sharedPrefs.edit().remove(colorKey).remove(heightKey).remove(avatarKey).apply()
+                        onAppearanceChanged()
+                        Toast.makeText(activity, "تمام تنظیمات اختصاصی به پیش‌فرض بازگشت", Toast.LENGTH_SHORT).show()
+                    }
+                    selectedText.contains("انتخاب") -> onSelectClicked()
                 }
             }
             .setNegativeButton(android.R.string.cancel, null)

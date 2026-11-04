@@ -154,7 +154,9 @@ class ConversationsAdapter @Inject constructor(
             holder.containerView.setBackgroundResource(R.drawable.glass_card_conversation)
         }
 
+        val customAvatarPath = prefs.sharedPrefs.getString("custom_avatar_${conversation.id}", null)
         holder.avatars.recipients = conversation.recipients
+        holder.avatars.setCustomAvatar(customAvatarPath)
         holder.title.collapseEnabled = conversation.recipients.size > 1
         holder.title.text = buildSpannedString {
             append(conversation.getTitle())

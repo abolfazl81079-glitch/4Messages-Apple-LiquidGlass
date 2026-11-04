@@ -47,6 +47,7 @@ class AvatarView @JvmOverloads constructor(
     private var photoUri: String? = null
     private var lastUpdated: Long? = null
     private var theme: Colors.Theme
+    private var customAvatarPath: String? = null
 
     init {
         if (!isInEditMode) {
@@ -58,6 +59,11 @@ class AvatarView @JvmOverloads constructor(
         View.inflate(context, R.layout.avatar_view, this)
         setBackgroundResource(R.drawable.circle)
         clipToOutline = true
+    }
+
+    fun setCustomAvatarPath(path: String?) {
+        customAvatarPath = path
+        updateView()
     }
 
     /**
@@ -81,6 +87,18 @@ class AvatarView @JvmOverloads constructor(
     }
 
     private fun updateView() {
+        val customPath = customAvatarPath
+        if (customPath != null && java.io.File(customPath).exists()) {
+            initial.text = null
+            icon.visibility = GONE
+            photo.visibility = VISIBLE
+            photo.setImageDrawable(null)
+            GlideApp.with(photo)
+                    .load(java.io.File(customPath))
+                    .into(photo)
+            return
+        }
+
         // Apply theme
         if (!prefs.grayAvatar.get()) {
             setBackgroundTint(theme.theme) //Цвет аватара

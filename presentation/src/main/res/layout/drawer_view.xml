@@ -144,6 +144,21 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/appUpdate"
+            style="@style/DrawerRow">
+
+            <ImageView
+                style="@style/DrawerIcon"
+                android:src="@drawable/ic_file_download_black_24dp"
+                android:tint="?android:attr/textColorSecondary" />
+
+            <com.goodwy.messages.common.widget.QkTextView
+                style="@style/DrawerText"
+                android:text="به‌روزرسانی برنامه (Update)" />
+
+        </LinearLayout>
+
+        <LinearLayout
             android:id="@+id/plus"
             style="@style/DrawerRow">
 

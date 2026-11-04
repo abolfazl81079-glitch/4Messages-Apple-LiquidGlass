@@ -53,6 +53,20 @@ class GroupAvatarView @JvmOverloads constructor(
         }
     }
 
+    fun setCustomAvatar(path: String?) {
+        if (path != null && java.io.File(path).exists()) {
+            avatar1Frame.setBackgroundTint(context.getColorCompat(android.R.color.transparent))
+            avatar1Frame.updateLayoutParams<LayoutParams> {
+                matchConstraintPercentWidth = 1.0f
+            }
+            avatar2.isVisible = false
+            avatar1.setCustomAvatarPath(path)
+        } else {
+            avatar1.setCustomAvatarPath(null)
+            updateView()
+        }
+    }
+
     private fun updateView() {
         avatar1Frame.setBackgroundTint(when (recipients.size > 1) {
             true -> context.resolveThemeColor(android.R.attr.windowBackground)
