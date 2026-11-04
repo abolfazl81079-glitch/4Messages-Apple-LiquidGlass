@@ -213,7 +213,7 @@ class ConversationsAdapter @Inject constructor(
             if (isActivated) {
                 setStroke(2.dpToPx(context), 0xFF007AFF.toInt())
             } else {
-                setStroke(1.5.dpToPx(context).toInt(), 0x66FFFFFF.toInt())
+                setStroke(2.dpToPx(context), 0x66FFFFFF.toInt())
             }
         }
 

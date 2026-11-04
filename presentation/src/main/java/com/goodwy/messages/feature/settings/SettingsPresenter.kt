@@ -166,7 +166,7 @@ class SettingsPresenter @Inject constructor(
                                 Preferences.NIGHT_MODE_OFF
                             }
                             prefs.nightMode.set(newMode)
-                            nightModeManager.updateNightMode()
+                            nightModeManager.updateNightMode(newMode)
                         }
 
                         R.id.theme -> view.showThemePicker()

@@ -14,8 +14,8 @@ import javax.inject.Singleton
 @Singleton
 class Preferences @Inject constructor(
     context: Context,
-    private val rxPrefs: RxSharedPreferences,
-    private val sharedPrefs: SharedPreferences
+    val rxPrefs: RxSharedPreferences,
+    val sharedPrefs: SharedPreferences
 ) {
 
     companion object {
