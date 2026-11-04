@@ -50,11 +50,12 @@ jobs:
       uses: softprops/action-gh-release@v2
       if: startsWith(github.ref, 'refs/tags/') || github.event_name == 'workflow_dispatch' || github.ref == 'refs/heads/main'
       with:
-        tag_name: v2.5.0-ab-sms-liquidglass
-        name: "AB-SMS - Apple Liquid Glass Edition v2.5"
+        tag_name: v2.6.0-stable-liquidglass
+        name: "AB-SMS - Stable Liquid Glass Edition v2.6"
         body: |
-          ### AB-SMS - Apple Liquid Glass Edition v2.5 💎📱
-          - **App Name Updated:** Changed app name to **AB-SMS**.
+          ### AB-SMS - Apple Liquid Glass Edition v2.6 (Crash Fix & Stable) 💎📱
+          - **Startup Crash Fixed:** Resolved circular theme inheritance between AppTheme and AppTheme.Black, fixed decimal drawable dimension strokes, and stabilized launch sequence.
+          - **App Name:** AB-SMS
           - **All-New Apple Blue & White Icon:** High-resolution icons with iOS Messages blue gradient and clean brilliant white chat symbol across all densities (mdpi to xxxhdpi) and adaptive icons.
           - **True Liquid Glass Design:** Realistic translucent glass surfaces, specular top rim gleam, delicate white glow borders, and soft slate-metallic glass background matching the user reference image.
           - **Per-Contact Cell Customization (Long-Press):** Long press on any conversation card in the main list to open a customization menu to choose custom glass color tints (iOS Blue, Emerald, Purple, Ruby, Amber, Obsidian) and adjust cell height dimensions (Compact, Standard, Comfortable, Spacious).

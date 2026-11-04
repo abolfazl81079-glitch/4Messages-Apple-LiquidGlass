@@ -3,10 +3,10 @@
     <string name="app_name" translatable="false">AB-SMS</string>
     <string name="settings_night_mode_toggle_title">Dark Glass Theme (Night Mode)</string>
     <string name="settings_night_mode_toggle_summary">Toggle directly between Day and Night Glass themes</string>
-    <string name="customize_cell_title">تنظیمات ظاهر مخاطب</string>
-    <string name="customize_cell_color">رنگ پس‌زمینه شیشه (Glass Color)</string>
-    <string name="customize_cell_height">ابعاد و ارتفاع سلول (Cell Height)</string>
-    <string name="customize_cell_reset">بازنشانی به حالت پیش‌فرض</string>
+    <string name="customize_cell_title">Customize Contact Cell</string>
+    <string name="customize_cell_color">Glass Background Color</string>
+    <string name="customize_cell_height">Cell Dimensions and Height</string>
+    <string name="customize_cell_reset">Reset to Default</string>
 
     <string name="shortcut_compose_long_label">New conversation</string>
     <string name="shortcut_compose_short_label">Compose</string>

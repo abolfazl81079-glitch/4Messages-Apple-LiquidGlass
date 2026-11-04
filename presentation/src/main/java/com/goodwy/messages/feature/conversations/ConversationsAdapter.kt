@@ -126,8 +126,8 @@ class ConversationsAdapter @Inject constructor(
         // Custom Per-Contact Glass Color & Height Customization
         val colorKey = "custom_cell_color_${conversation.id}"
         val heightKey = "custom_cell_height_${conversation.id}"
-        val customTint = prefs.rxPrefs.getInteger(colorKey, 0).get()
-        val customHeight = prefs.rxPrefs.getInteger(heightKey, 0).get()
+        val customTint = prefs.sharedPrefs.getInt(colorKey, 0)
+        val customHeight = prefs.sharedPrefs.getInt(heightKey, 0)
 
         when (customHeight) {
             1 -> { // Compact

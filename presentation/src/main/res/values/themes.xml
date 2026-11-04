@@ -40,53 +40,28 @@
         <item name="windowActionBar">false</item>
     </style>
 
-    <style name="AppThemeDialog" parent="Theme.AppCompat.Dialog">
-        <item name="android:textColorPrimary">@color/text_primary</item>
-        <item name="android:textColorSecondary">@color/text_secondary</item>
-        <item name="android:textColorTertiary">@color/text_tertiary</item>
-        <item name="android:windowBackground">@drawable/bg_glass_dark</item>
+    <style name="AppThemeDialog" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:textColorPrimary">#1C1C1E</item>
+        <item name="android:textColorSecondary">#48484A</item>
+        <item name="android:textColorTertiary">#8E8E93</item>
+        <item name="android:windowBackground">@drawable/bg_glass_light</item>
         <item name="actionBarPopupTheme">@style/PopupTheme</item>
-        <item name="bubbleColor">@color/bubbleDark</item>
-        <item name="colorPrimary">#1B212D</item>
-        <item name="colorPrimaryDark">#10141C</item>
-        <item name="selectableItemBackground">@drawable/ripple_dark</item>
+        <item name="bubbleColor">@color/bubbleLight</item>
+        <item name="colorPrimary">#E6EEF8</item>
+        <item name="colorPrimaryDark">#D5DFEC</item>
+        <item name="selectableItemBackground">@drawable/ripple</item>
         <item name="windowActionBar">false</item>
     </style>
 
-    <style name="PopupTheme" parent="ThemeOverlay.AppCompat">
-        <item name="android:colorBackground">#1B212D</item>
-        <item name="android:textColor">#FFFFFF</item>
+    <style name="PopupTheme" parent="ThemeOverlay.AppCompat.Light">
+        <item name="android:colorBackground">#E6EEF8</item>
+        <item name="android:textColor">#1C1C1E</item>
     </style>
 
-    <!-- Dark Liquid Glass Theme (Night Mode) - Matches user sample -->
-    <style name="AppTheme.Black">
-        <item name="android:navigationBarColor">#10141C</item>
-        <item name="android:statusBarColor">#2B3444</item>
-        <item name="android:windowBackground">@drawable/bg_glass_dark</item>
-        <item name="android:windowLightStatusBar">false</item>
-        <item name="android:textColorPrimary">#FFFFFF</item>
-        <item name="android:textColorSecondary">#9AA4B2</item>
-        <item name="android:textColorTertiary">#64748B</item>
-        <item name="bubbleColor">@color/bubbleDark</item>
-        <item name="colorAccent">@color/apple_accent_blue</item>
-        <item name="colorPrimary">#1B212D</item>
-        <item name="colorPrimaryDark">#10141C</item>
-        <item name="selectableItemBackground">@drawable/ripple_dark</item>
-        <item name="switchThumbEnabled">#FFFFFF</item>
-        <item name="switchThumbDisabled">#636366</item>
-        <item name="switchTrackEnabled">#007AFF</item>
-        <item name="switchTrackDisabled">#393946</item>
-    </style>
-
-    <style name="AppThemeDialog.Black">
-        <item name="android:textColorPrimary">#FFFFFF</item>
-        <item name="android:textColorSecondary">#9AA4B2</item>
-        <item name="android:textColorTertiary">#64748B</item>
-        <item name="android:windowBackground">@drawable/bg_glass_dark</item>
-        <item name="bubbleColor">@color/bubbleBlack</item>
-        <item name="colorPrimary">#1B212D</item>
-        <item name="colorPrimaryDark">#10141C</item>
-    </style>
+    <!-- Black mode placeholder for Light configuration -->
+    <style name="AppTheme.Black" />
+    <style name="AppThemeDialog.Black" />
+    <style name="PopupTheme.Black" />
 
     <!-- Gray Theme -->
     <style name="AppTheme.Gray">
@@ -104,6 +79,11 @@
         <item name="bubbleColor">@color/bubbleGray</item>
         <item name="colorPrimary">#2B3444</item>
         <item name="colorPrimaryDark">#1B212D</item>
+    </style>
+
+    <style name="PopupTheme.Gray">
+        <item name="android:colorBackground">#2B3444</item>
+        <item name="bubbleColor">@color/bubbleGray</item>
     </style>
 
     <style name="AppTheme.QuickReply">

@@ -101,10 +101,14 @@ abstract class QkThemedActivity : QkActivity() {
 
     @SuppressLint("InlinedApi")
     override fun onCreate(savedInstanceState: Bundle?) {
-        if (!isNightModeActive()) {
-            setTheme(getActivityGrayThemeRes(prefs.gray.get()))
-        } else {
-            setTheme(getActivityThemeRes(prefs.black.get()))
+        try {
+            if (!isNightModeActive()) {
+                setTheme(getActivityGrayThemeRes(prefs.gray.get()))
+            } else {
+                setTheme(getActivityThemeRes(prefs.black.get()))
+            }
+        } catch (e: Exception) {
+            setTheme(R.style.AppTheme)
         }
         super.onCreate(savedInstanceState)
 
@@ -137,16 +141,20 @@ abstract class QkThemedActivity : QkActivity() {
     }
 
     open fun isNightModeActive(): Boolean {
-        return when (prefs.nightMode.get()) {
-            Preferences.NIGHT_MODE_ON -> true
-            Preferences.NIGHT_MODE_OFF -> false
-            else -> {
-                val defaultNightMode = AppCompatDelegate.getDefaultNightMode()
-                if (defaultNightMode == AppCompatDelegate.MODE_NIGHT_YES) return true
-                if (defaultNightMode == AppCompatDelegate.MODE_NIGHT_NO) return false
-                val currentNightMode = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
-                currentNightMode == Configuration.UI_MODE_NIGHT_YES
+        return try {
+            when (prefs.nightMode.get()) {
+                Preferences.NIGHT_MODE_ON -> true
+                Preferences.NIGHT_MODE_OFF -> false
+                else -> {
+                    val defaultNightMode = AppCompatDelegate.getDefaultNightMode()
+                    if (defaultNightMode == AppCompatDelegate.MODE_NIGHT_YES) return true
+                    if (defaultNightMode == AppCompatDelegate.MODE_NIGHT_NO) return false
+                    val currentNightMode = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
+                    currentNightMode == Configuration.UI_MODE_NIGHT_YES
+                }
             }
+        } catch (e: Exception) {
+            true
         }
     }
 

@@ -7,7 +7,7 @@
         <item name="android:windowBackground">@drawable/bg_glass_dark</item>
     </style>
 
-    <style name="AppTheme" parent="AppTheme.Black" />
+    <style name="AppTheme" parent="AppBaseTheme" />
 
     <style name="AppBaseTheme" parent="Theme.AppCompat.NoActionBar">
         <item name="android:divider">@color/separatorDark</item>
@@ -32,5 +32,49 @@
         <item name="switchTrackDisabled">#393946</item>
         <item name="windowActionBar">false</item>
     </style>
+
+    <style name="AppThemeDialog" parent="Theme.AppCompat.Dialog">
+        <item name="android:textColorPrimary">#FFFFFF</item>
+        <item name="android:textColorSecondary">#9AA4B2</item>
+        <item name="android:textColorTertiary">#64748B</item>
+        <item name="android:windowBackground">@drawable/bg_glass_dark</item>
+        <item name="actionBarPopupTheme">@style/PopupTheme</item>
+        <item name="bubbleColor">@color/bubbleDark</item>
+        <item name="colorPrimary">#1B212D</item>
+        <item name="colorPrimaryDark">#10141C</item>
+        <item name="selectableItemBackground">@drawable/ripple_dark</item>
+        <item name="windowActionBar">false</item>
+    </style>
+
+    <style name="PopupTheme" parent="ThemeOverlay.AppCompat">
+        <item name="android:colorBackground">#1B212D</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+
+    <!-- Black theme -->
+    <style name="AppTheme.Black">
+        <item name="android:navigationBarColor">#10141C</item>
+        <item name="android:statusBarColor">#2B3444</item>
+        <item name="android:windowBackground">@drawable/bg_glass_dark</item>
+        <item name="bubbleColor">@color/bubbleBlack</item>
+        <item name="colorPrimary">#1B212D</item>
+        <item name="colorPrimaryDark">#10141C</item>
+    </style>
+
+    <style name="AppThemeDialog.Black">
+        <item name="android:windowBackground">@drawable/bg_glass_dark</item>
+        <item name="actionBarPopupTheme">@style/PopupTheme.Black</item>
+        <item name="colorPrimary">#1B212D</item>
+        <item name="colorPrimaryDark">#10141C</item>
+    </style>
+
+    <style name="PopupTheme.Black">
+        <item name="android:colorBackground">#1B212D</item>
+        <item name="bubbleColor">@color/bubbleBlack</item>
+    </style>
+
+    <style name="AppTheme.Gray" />
+    <style name="AppThemeDialog.Gray" />
+    <style name="PopupTheme.Gray" />
 
 </resources>

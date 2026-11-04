@@ -1,7 +1,6 @@
 package com.goodwy.messages.feature.conversations
 
 import android.app.Activity
-import android.graphics.Color
 import androidx.appcompat.app.AlertDialog
 import com.goodwy.messages.model.Conversation
 import com.goodwy.messages.util.Preferences
@@ -12,13 +11,13 @@ object ConversationAppearanceDialog {
     data class CellHeightOption(val name: String, val heightIndex: Int)
 
     val GLASS_TINTS = listOf(
-        GlassTint("شیشه فوق شفاف نقره‌ای (پیش‌فرض)", 0),
+        GlassTint("شیشه شفاف نقره‌ای (پیش‌فرض)", 0),
         GlassTint("شیشه آبی اقیانوسی (iOS Blue)", 0x3D007AFF),
         GlassTint("شیشه زمردی کریستالی (Emerald)", 0x3D34C759),
-        GlassTint("شیشه بنفش کیهانی (Purple Velvet)", 0x3DAF52DE),
+        GlassTint("شیشه بنفش کیهانی (Purple)", 0x3DAF52DE),
         GlassTint("شیشه یاقوتی (Ruby Red)", 0x3DFF2D55),
-        GlassTint("شیشه کهربایی طلایی (Amber Gold)", 0x3DFF9500),
-        GlassTint("شیشه دودی مات (Frosted Obsidian)", 0x59000000.toInt())
+        GlassTint("شیشه کهربایی طلایی (Amber)", 0x3DFF9500),
+        GlassTint("شیشه دودی مات (Frosted Dark)", 0x59000000.toInt())
     )
 
     val CELL_HEIGHTS = listOf(
@@ -46,14 +45,13 @@ object ConversationAppearanceDialog {
         )
 
         AlertDialog.Builder(activity)
-            .setTitle("تنظیمات سلول: ${conversation.getTitle()}")
-            .setItems(options) { dialog, which ->
+            .setTitle(conversation.getTitle())
+            .setItems(options) { _, which ->
                 when (which) {
                     0 -> showColorPicker(activity, conversation, prefs, onAppearanceChanged)
                     1 -> showHeightPicker(activity, conversation, prefs, onAppearanceChanged)
                     2 -> {
-                        prefs.rxPrefs.getInteger(colorKey).delete()
-                        prefs.rxPrefs.getInteger(heightKey).delete()
+                        prefs.sharedPrefs.edit().remove(colorKey).remove(heightKey).apply()
                         onAppearanceChanged()
                     }
                     3 -> onSelectClicked()
@@ -70,19 +68,19 @@ object ConversationAppearanceDialog {
         onAppearanceChanged: () -> Unit
     ) {
         val colorKey = "custom_cell_color_${conversation.id}"
-        val currentColor = prefs.rxPrefs.getInteger(colorKey, 0).get()
+        val currentColor = prefs.sharedPrefs.getInt(colorKey, 0)
 
         val names = GLASS_TINTS.map { it.name }.toTypedArray()
         val currentIndex = GLASS_TINTS.indexOfFirst { it.color == currentColor }.let { if (it >= 0) it else 0 }
 
         AlertDialog.Builder(activity)
-            .setTitle("رنگ شیشه‌ای: ${conversation.getTitle()}")
+            .setTitle(conversation.getTitle())
             .setSingleChoiceItems(names, currentIndex) { dialog, which ->
                 val selected = GLASS_TINTS[which].color
                 if (selected == 0) {
-                    prefs.rxPrefs.getInteger(colorKey).delete()
+                    prefs.sharedPrefs.edit().remove(colorKey).apply()
                 } else {
-                    prefs.rxPrefs.getInteger(colorKey).set(selected)
+                    prefs.sharedPrefs.edit().putInt(colorKey, selected).apply()
                 }
                 onAppearanceChanged()
                 dialog.dismiss()
@@ -98,16 +96,16 @@ object ConversationAppearanceDialog {
         onAppearanceChanged: () -> Unit
     ) {
         val heightKey = "custom_cell_height_${conversation.id}"
-        val currentHeight = prefs.rxPrefs.getInteger(heightKey, 0).get()
+        val currentHeight = prefs.sharedPrefs.getInt(heightKey, 0)
 
         val names = CELL_HEIGHTS.map { it.name }.toTypedArray()
         val currentIndex = CELL_HEIGHTS.indexOfFirst { it.heightIndex == currentHeight }.let { if (it >= 0) it else 1 }
 
         AlertDialog.Builder(activity)
-            .setTitle("ابعاد سلول: ${conversation.getTitle()}")
+            .setTitle(conversation.getTitle())
             .setSingleChoiceItems(names, currentIndex) { dialog, which ->
                 val selected = CELL_HEIGHTS[which].heightIndex
-                prefs.rxPrefs.getInteger(heightKey).set(selected)
+                prefs.sharedPrefs.edit().putInt(heightKey, selected).apply()
                 onAppearanceChanged()
                 dialog.dismiss()
             }
