@@ -158,6 +158,17 @@ class SettingsPresenter @Inject constructor(
                     Timber.v("Preference click: ${context.resources.getResourceName(it.id)}")
 
                     when (it.id) {
+                        R.id.nightToggle -> {
+                            val current = prefs.nightMode.get()
+                            val newMode = if (current == Preferences.NIGHT_MODE_OFF) {
+                                Preferences.NIGHT_MODE_ON
+                            } else {
+                                Preferences.NIGHT_MODE_OFF
+                            }
+                            prefs.nightMode.set(newMode)
+                            nightModeManager.updateNightMode()
+                        }
+
                         R.id.theme -> view.showThemePicker()
 
                         R.id.night -> view.showNightModeDialog()

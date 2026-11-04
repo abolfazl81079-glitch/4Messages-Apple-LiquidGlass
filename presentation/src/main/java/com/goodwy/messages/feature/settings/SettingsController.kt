@@ -162,6 +162,7 @@ class SettingsController : QkController<SettingsView, SettingsState, SettingsPre
         swipeActions.chevron.setImageResource(R.drawable.ic_chevron_right_black_24dp)
         about.chevron.setImageResource(R.drawable.ic_chevron_right_black_24dp)
 
+        nightToggle.checkbox.isChecked = (state.nightModeId != Preferences.NIGHT_MODE_OFF)
         night.value = state.nightModeSummary
         nightModeDialog.adapter.selectedItem = state.nightModeId
         nightStart.setVisible(state.nightModeId == Preferences.NIGHT_MODE_AUTO)

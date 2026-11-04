@@ -1,7 +1,11 @@
 package com.goodwy.messages.feature.conversations
 
+import android.app.Activity
 import android.content.Context
 import android.graphics.Typeface
+import android.graphics.drawable.Drawable
+import android.graphics.drawable.GradientDrawable
+import android.graphics.drawable.LayerDrawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.text.bold
@@ -15,6 +19,7 @@ import com.goodwy.messages.common.base.QkRealmAdapter
 import com.goodwy.messages.common.base.QkViewHolder
 import com.goodwy.messages.common.util.Colors
 import com.goodwy.messages.common.util.DateFormatter
+import com.goodwy.messages.common.util.extensions.dpToPx
 import com.goodwy.messages.common.util.extensions.getColorCompat
 import com.goodwy.messages.common.util.extensions.resolveThemeColor
 import com.goodwy.messages.common.util.extensions.setTint
@@ -64,7 +69,7 @@ class ConversationsAdapter @Inject constructor(
 
             view.date.setTypeface(view.date.typeface, Typeface.BOLD)
             view.date.setTextColor(textColorPrimary)
-            }
+        }
 
         return QkViewHolder(view).apply {
             view.setOnClickListener {
@@ -77,8 +82,27 @@ class ConversationsAdapter @Inject constructor(
 
             view.setOnLongClickListener {
                 val conversation = getItem(adapterPosition) ?: return@setOnLongClickListener true
-                toggleSelection(conversation.id)
-                view.isActivated = isSelected(conversation.id)
+                if (hasSelection()) {
+                    toggleSelection(conversation.id)
+                    view.isActivated = isSelected(conversation.id)
+                } else {
+                    val act = (context as? Activity) ?: (view.context as? Activity)
+                    if (act != null) {
+                        ConversationAppearanceDialog.show(
+                            activity = act,
+                            conversation = conversation,
+                            prefs = prefs,
+                            onAppearanceChanged = { notifyItemChanged(adapterPosition) },
+                            onSelectClicked = {
+                                toggleSelection(conversation.id)
+                                view.isActivated = isSelected(conversation.id)
+                            }
+                        )
+                    } else {
+                        toggleSelection(conversation.id)
+                        view.isActivated = isSelected(conversation.id)
+                    }
+                }
                 true
             }
         }
@@ -99,8 +123,38 @@ class ConversationsAdapter @Inject constructor(
 
         holder.containerView.isActivated = isSelected(conversation.id)
 
+        // Custom Per-Contact Glass Color & Height Customization
+        val colorKey = "custom_cell_color_${conversation.id}"
+        val heightKey = "custom_cell_height_${conversation.id}"
+        val customTint = prefs.rxPrefs.getInteger(colorKey, 0).get()
+        val customHeight = prefs.rxPrefs.getInteger(heightKey, 0).get()
+
+        when (customHeight) {
+            1 -> { // Compact
+                holder.containerView.setPadding(12.dpToPx(context), 6.dpToPx(context), 14.dpToPx(context), 6.dpToPx(context))
+                holder.containerView.minimumHeight = 56.dpToPx(context)
+            }
+            2 -> { // Comfortable
+                holder.containerView.setPadding(12.dpToPx(context), 16.dpToPx(context), 14.dpToPx(context), 16.dpToPx(context))
+                holder.containerView.minimumHeight = 88.dpToPx(context)
+            }
+            3 -> { // Spacious
+                holder.containerView.setPadding(12.dpToPx(context), 22.dpToPx(context), 14.dpToPx(context), 22.dpToPx(context))
+                holder.containerView.minimumHeight = 104.dpToPx(context)
+            }
+            else -> { // Standard (Default)
+                holder.containerView.setPadding(12.dpToPx(context), 12.dpToPx(context), 14.dpToPx(context), 12.dpToPx(context))
+                holder.containerView.minimumHeight = 72.dpToPx(context)
+            }
+        }
+
+        if (customTint != 0) {
+            holder.containerView.background = createCustomGlassDrawable(context, customTint, isSelected(conversation.id))
+        } else {
+            holder.containerView.setBackgroundResource(R.drawable.glass_card_conversation)
+        }
+
         holder.avatars.recipients = conversation.recipients
-        //holder.avatars.setVisible(false)
         holder.title.collapseEnabled = conversation.recipients.size > 1
         holder.title.text = buildSpannedString {
             append(conversation.getTitle())
@@ -113,13 +167,7 @@ class ConversationsAdapter @Inject constructor(
         holder.simIndex.text = subscription?.simSlotIndex?.plus(1)?.toString()
         holder.sim.setVisible(subscription != null && subs.size > 1)
         holder.simIndex.setVisible(subscription != null && subs.size > 1)
-        /*val simColor = when (subscription?.simSlotIndex?.plus(1)?.toString()) {
-            "1" -> context.getColorCompat(R.color.sim1)
-            "2" -> context.getColorCompat(R.color.sim2)
-            "3" -> context.getColorCompat(R.color.sim3)
-            "4" -> context.getColorCompat(R.color.sim4)
-            else -> context.getColorCompat(R.color.sim_other)
-        }*/
+
         val simColor = when (subscription?.simSlotIndex?.plus(1)?.toString()) {
             "1" -> colors.colorForSim(context, 1)
             "2" -> colors.colorForSim(context, 2)
@@ -142,6 +190,44 @@ class ConversationsAdapter @Inject constructor(
             holder.separator.isVisible = true
         } else {
             holder.separator.isVisible = false
+        }
+    }
+
+    private fun createCustomGlassDrawable(context: Context, tintColor: Int, isActivated: Boolean): Drawable {
+        val radius = 20.dpToPx(context).toFloat()
+
+        val shadow = GradientDrawable().apply {
+            cornerRadius = radius
+            setColor(0x2A050B14.toInt())
+        }
+
+        val glassBody = GradientDrawable(
+            GradientDrawable.Orientation.TOP_BOTTOM,
+            intArrayOf(
+                tintColor,
+                tintColor and 0x00FFFFFF or 0x14000000,
+                tintColor and 0x00FFFFFF or 0x0A000000
+            )
+        ).apply {
+            cornerRadius = radius
+            if (isActivated) {
+                setStroke(2.dpToPx(context), 0xFF007AFF.toInt())
+            } else {
+                setStroke(1.5.dpToPx(context).toInt(), 0x66FFFFFF.toInt())
+            }
+        }
+
+        val glare = GradientDrawable(
+            GradientDrawable.Orientation.TOP_BOTTOM,
+            intArrayOf(0x66FFFFFF.toInt(), 0x1AFFFFFF.toInt(), 0x00FFFFFF.toInt())
+        ).apply {
+            cornerRadii = floatArrayOf(radius, radius, radius, radius, 8f, 8f, 8f, 8f)
+        }
+
+        return LayerDrawable(arrayOf(shadow, glassBody, glare)).apply {
+            setLayerInset(0, 1.dpToPx(context), 2.dpToPx(context), 1.dpToPx(context), 0)
+            setLayerInset(1, 0, 0, 0, 2.dpToPx(context))
+            setLayerInset(2, 4.dpToPx(context), 1.dpToPx(context), 4.dpToPx(context), 20.dpToPx(context))
         }
     }
 

@@ -20,6 +20,15 @@
             android:text="@string/settings_category_appearance" />
 
         <com.goodwy.messages.common.widget.PreferenceView
+            android:id="@+id/nightToggle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:icon="@drawable/ic_invert_colors_black_24dp"
+            app:title="@string/settings_night_mode_toggle_title"
+            app:summary="@string/settings_night_mode_toggle_summary"
+            app:widget="@layout/settings_switch_widget" />
+
+        <com.goodwy.messages.common.widget.PreferenceView
             android:id="@+id/theme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

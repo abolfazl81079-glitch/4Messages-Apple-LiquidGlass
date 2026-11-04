@@ -50,16 +50,16 @@ jobs:
       uses: softprops/action-gh-release@v2
       if: startsWith(github.ref, 'refs/tags/') || github.event_name == 'workflow_dispatch' || github.ref == 'refs/heads/main'
       with:
-        tag_name: v2.0.0-liquid-glass
-        name: "4Messages - Apple Dark Liquid Glass v2.0"
+        tag_name: v2.5.0-ab-sms-liquidglass
+        name: "AB-SMS - Apple Liquid Glass Edition v2.5"
         body: |
-          ### 4Messages - Apple Dark Liquid Glass v2.0 🍏💎
-          - **True Obsidian Dark Glassmorphism:** Deep space dark background (#08090C) matching HorizonX aesthetic.
-          - **Frosted Glass Cards:** Every conversation is housed in an elegant translucent card with subtle light border and 16dp rounded corners.
-          - **Liquid Glass Searchbar & Inputs:** Frosted glass pill searchbar and compose inputs.
-          - **All-New Minimalist Apple Liquid Glass Icon:** Generated high-resolution icons across all densities (mdpi to xxxhdpi) and adaptive icons.
-          - **Forced Dark Glass Defaults:** The app immediately launches in the dark liquid glass theme without needing manual configuration.
-          - Download the APK below and install on your Android device.
+          ### AB-SMS - Apple Liquid Glass Edition v2.5 💎📱
+          - **App Name Updated:** Changed app name to **AB-SMS**.
+          - **All-New Apple Blue & White Icon:** High-resolution icons with iOS Messages blue gradient and clean brilliant white chat symbol across all densities (mdpi to xxxhdpi) and adaptive icons.
+          - **True Liquid Glass Design:** Realistic translucent glass surfaces, specular top rim gleam, delicate white glow borders, and soft slate-metallic glass background matching the user reference image.
+          - **Per-Contact Cell Customization (Long-Press):** Long press on any conversation card in the main list to open a customization menu to choose custom glass color tints (iOS Blue, Emerald, Purple, Ruby, Amber, Obsidian) and adjust cell height dimensions (Compact, Standard, Comfortable, Spacious).
+          - **Day & Night Mode Switch in Settings:** Direct toggle in Settings to switch between Day Glass and Night Glass themes immediately.
+          - **Fixed Settings Switches & Checkmarks:** Switches now correctly display pure white knobs and vibrant Apple Blue active tracks when checked, and muted tracks when unchecked without double-coloring.
         files: presentation/build/outputs/apk/noAnalytics/debug/*.apk
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

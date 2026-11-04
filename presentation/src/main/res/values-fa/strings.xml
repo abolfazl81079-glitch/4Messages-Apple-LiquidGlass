@@ -18,6 +18,12 @@
   ~ along with 4Messages.  If not, see <http://www.gnu.org/licenses/>.
   -->
 <resources>
+    <string name="settings_night_mode_toggle_title">تم شیشه‌ای شب (حالت شب)</string>
+    <string name="settings_night_mode_toggle_summary">تغییر مستقیم بین تم شیشه‌ای روز و شب</string>
+    <string name="customize_cell_title">تنظیمات ظاهر مخاطب</string>
+    <string name="customize_cell_color">رنگ پس‌زمینه شیشه (Glass Color)</string>
+    <string name="customize_cell_height">ابعاد و ارتفاع سلول (Cell Height)</string>
+    <string name="customize_cell_reset">بازنشانی به حالت پیش‌فرض</string>
     <string name="shortcut_compose_long_label">گفتگوی جدید</string>
     <string name="shortcut_compose_short_label">نوشتن</string>
     <string name="shortcut_compose_disabled_message">میانبر غیرفعال شد</string>

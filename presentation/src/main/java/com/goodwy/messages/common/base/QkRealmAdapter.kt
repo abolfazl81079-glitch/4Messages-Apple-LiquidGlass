@@ -74,6 +74,8 @@ abstract class QkRealmAdapter<T : RealmModel> : RealmRecyclerViewAdapter<T, QkVi
         return selection.contains(id)
     }
 
+    fun hasSelection(): Boolean = selection.isNotEmpty()
+
     fun clearSelection() {
         selection = listOf()
         selectionChanges.onNext(selection)

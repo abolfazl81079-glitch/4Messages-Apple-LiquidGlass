@@ -40,18 +40,18 @@
     <color name="separatorLight">#1F2433</color>
     <color name="separatorDark">#1F2433</color>
 
-    <color name="switchThumbEnabledLight">#007AFF</color>
-    <color name="switchThumbEnabledGray">#007AFF</color>
-    <color name="switchThumbEnabledDark">#007AFF</color>
+    <color name="switchThumbEnabledLight">#FFFFFF</color>
+    <color name="switchThumbEnabledGray">#FFFFFF</color>
+    <color name="switchThumbEnabledDark">#FFFFFF</color>
 
-    <color name="switchTrackEnabledLight">#263B5E</color>
-    <color name="switchTrackEnabledDark">#263B5E</color>
+    <color name="switchTrackEnabledLight">#007AFF</color>
+    <color name="switchTrackEnabledDark">#007AFF</color>
 
-    <color name="switchThumbDisabledLight">#505462</color>
-    <color name="switchThumbDisabledDark">#505462</color>
+    <color name="switchThumbDisabledLight">#D1D1D6</color>
+    <color name="switchThumbDisabledDark">#636366</color>
 
-    <color name="switchTrackDisabledLight">#1F232E</color>
-    <color name="switchTrackDisabledDark">#1F232E</color>
+    <color name="switchTrackDisabledLight">#E5E5EA</color>
+    <color name="switchTrackDisabledDark">#393946</color>
 
     <!-- Accent -->
     <color name="tools_theme">#007AFF</color>
